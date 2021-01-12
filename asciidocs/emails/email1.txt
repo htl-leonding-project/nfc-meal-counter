@@ -1,0 +1,209 @@
+Lieber Christian,
+
+ich habe einen Kollegen gefunden, der es sich vorstellen kann, dieses Projekt in seinem Projektunterricht unterzubringen. Nächste Schritte:
+
+1. Bitte die Anforderungsliste inklusive der Klärungen in unserem Mail-Austausch unten in eine stringente Form zusammenstellen.
+2. Die Anforderungen mit Deiner Telefonnummer an Thomas Stütz (ist auf cc) senden.
+3. Thomas wird sich dann bei Dir melden.
+
+P
+
+> On 25.11.2020, at 7:36 AM, NMS Helfenberg <s413132@schule-ooe.at> wrote:
+>
+> Sehr geehrter Hr. Bauer!
+>
+>
+>
+> Ich ergänze mal hier Ihre Fragen:
+>
+>
+>
+> Sehr geehrter Herr Tröls,
+>
+>
+>
+> natürlich kann ich mich an Sie erinnern! Ich hoffe, dass es Ihnen gut geht. Bezüglich des Projekts. Find ich sehr witzig. Ich fasse kurz zusammen, wie ich die Situation verstehe (Verzeihen Sie bitte das Stakkato):
+>
+> Ja es geht mir gut, danke der Nachfrage! Ich hoffe es läuft auch bei Ihnen gut!?
+>
+>
+>
+> 1. Wenn Ihre SchülerInnen zur Ausspeisung gehen,  loggen mit einem RFID chip o. ä. an einer Station ein und holen das Essen.
+>
+> Siehe Anhang – Kartenleser und Karten sind vorhanden. Pro Tag sollte der Counter nur 0 oder 1 ausspucken, d.h. die Verwendung der Karte soll auf 1x pro Tag beschränkt werden. Beim Auslesen brauche ich nur die Anzahl der Tage (insgesamt) an denen die Ausspeisung genutzt wurde. Zur Nachverfolgbarkeit wäre es gut, wenn ich auch sehe an welchen Tagen die Karte benutzt wurde (krank/nicht krank) – siehe Tabelle unten.
+>
+> 2. Das System legt die Ausspeisung in einer Datenbank ab
+>
+> Lokal (nicht in einer Cloud)
+>
+> 3. Sie können über einen zu definierenden Zeitraum die Anzahl der Ausspeisungen pro Schüler ansehen, eine Rechnung ausdrucken, etc.
+>
+> Die Abrechnung (Meldung an die Gemeinde) erfolgt monatlich vom 1. Bis zum letzten des Monats.
+>
+>
+>
+> Fragen:
+>
+> 1. Wie viele Ausspeisungen pro Tag sind zu erwarten?
+>
+> Derzeit haben wir 65 Schüler – deswegen kommt auch eine Kaufsoftware nicht in Frage – „die Arbeitszeit der Lehrer und meine sind billiger als der Ankauf“. Es ist derzeit so, dass 5 Leute mit der Abrechnung beschäftigt sind: 4 KV´s die eine Papiertabelle abzeichnen und ich der diese Tabelle vorbereitet und nach Kontrolle wieder digitalisiert. Es ist nicht der Megaaufwand, aber in meinen Augen Zeit, die besser genutzt werden könnte…
+>
+> 2. Die RFID/NFC chips würden Sie selbst zur Verfügung stellen?
+>
+> 200 Stk. Karten sind vorhanden – 2 Lese-/Schreibgeräte sind ebenfalls vorhanden. Ein (alter) Computer könnte direkt vor Ort aufgestellt werden. Netzwerkanschluss muss ich schauen.
+>
+> 3. Wie stellen Sie sich die Erfassung der Stammdaten (Schüler mit zugeordnetem Chip) vor? Wahrscheinlich über ein Admin Interface. Wie viele Schüler betrifft das? Ist das machbar, die Stammdaten “händisch” zu warten? Jedes Jahr kommen Schüler dazu, welche wieder ins System reinkommen. Jedes Jahr müssen auch welche inaktiv gestellt werden. Verlust des Chips muss man manage (Chip deaktivieren, neuen zuordnen, …))
+>
+> Da es sich um eine kleine Schule handelt (s.o.) ist die erstmalige Eingabe etwas mehr Arbeit (aber auch kein Problem) und die Verwaltung (+/- 1 Klasse/pro Jahr) stellt kein Problem dar. Die Arbeit über ein WYSIWYG-Interface wäre toll. Die Ergebnisse sollten einfach in eine Exceltabelle (Strg-C) überführbar sein.
+>
+> 4. Wie sieht der Zeithorizont aus?
+>
+> Es eilt nicht, aber… 😉
+>
+> 5. Wie ist das mit der Wartung?
+>
+> Wartung wäre wohl mein Part – gerne lerne auch ich dazu (à Programmierung)!
+>
+> 6. Wie ist das mit der DSGVO?
+>
+> Wie gesagt, wenn dann nur Lokal und nicht in einer Cloud. Die Daten sind im Grunde keine sensiblen Daten. Die Namen sollten (wenn nötig) von den Programmierern vertraulich behandelt werden.
+>
+>
+>
+> Nächste Schritte:
+>
+> 1. Ich werde das mal bei uns in den 3. Klassen (evtl. auch in den 4. Klassen) einkippen. Je nach Ausbaustufe kann es in einer der beiden Klassen sinnvoll verwendet werden. Für eine Diplomarbeit müssten wir reden. Daher auch die Frage nach dem Zeitrahmen.
+>
+> 2. Kurz telefonieren? Heute ab 17 Uhr. Morgen ab 18 Uhr.Donnerstag ab 18 Uhr. Meine Tel-#: +43 676 6173320
+>
+>
+>
+> P
+>
+>
+>
+> Schöne Grüße aus Helfenberg!
+> Christian
+>
+>     On 24.11.2020, at 8:29 AM, NMS Helfenberg <s413132@schule-ooe.at> wrote:
+>
+>
+>
+>     Sehr geehrter Hr. Bauer!
+>
+>
+>
+>     Ich weiß nicht, ob Sie sich noch an mich erinnern können – wir standen kurz in Kontakt wegen den „Digitalferien“.
+>
+>     Nun komme ich mit einer Bitte/Vorschlag/Frage zu Ihnen.
+>
+>
+>
+>     Ich weiß nicht, wie weit fortgeschritten Ihre Schüler im Maturajahr mit Softwareentwicklung sind, aber ich hätte da event. ein kleines Maturaprojekt:
+>
+>     Ich möchte in unserer Ausspeisung ein RFID/NFC-System einführen. Hintergrund soll für mich eine Vereinfachung in der monatlichen Abrechnung sein.
+>
+>     Vielleicht zäume ich zur Erklärung das Pferd von hinten auf:
+>
+>         Es soll monatlich eine Exceltabelle ausgeworfen werden mit folgendem Inhalt: Schüler – Tag (Datum zwecks Nachvollziehbarkeit) – Essen ja à Anzahl an „Essgängen“ pro Monat
+>
+>     Name
+>
+>
+>     Mo., 12.03.
+>
+>
+>     Di., 13.03.
+>
+>
+>     Mi., 14.03
+>
+>
+>     Summe
+>
+>     Xaver Musterman
+>
+>
+>     1
+>
+>
+>     0
+>
+>
+>     1
+>
+>
+>     2
+>
+>
+>
+>     Ich weiß, dass es diesbezügliche Software gibt, aber diese sind für uns als Landesschule und „nur damit ich es leichter hab“ unerschwinglich.
+>
+>
+>
+>     Hardware wäre vorhanden.
+>
+>
+>
+>     Sollte Interesse bestehen, bitte einfach bei mir melden!
+>
+>
+>
+>     DNMS Dipl.-Päd. Christian Tröls, BEd. MSc.
+>
+>     TechnischNaturwissenschaftliche Mittelschule
+>
+>     Erste TIME-Schule Österreichs!
+>
+>
+>
+>     TNMS Helfenberg
+>
+>     Schulstraße 20
+>
+>     4184 Helfenberg
+>
+>     07216 7011 16
+>
+>
+>
+>     s413132@schule-ooe.at
+>
+>     http://nmshelfenberg.eduhi.at
+>
+>
+>
+> ---
+> Peter Bauer
+> HTBLA Leonding
+> Dept. of Informatics and Media Technology
+> Limesstr. 12 - 14, 4060 Leonding
+> AUSTRIA
+>
+> www.htl-leonding.at
+>
+>
+> <image001.jpg>
+>
+>  Before printing this message, please beware of the effects on our environment
+> ________________________________________________________
+>
+>
+>
+> <image.jpg>
+
+---
+Peter Bauer
+HTBLA Leonding
+Dept. of Informatics and Media Technology
+Limesstr. 12 - 14, 4060 Leonding
+AUSTRIA
+www.htl-leonding.at
+
+
+
+ Before printing this message, please beware of the effects on our environment
+________________________________________________________
+
+
+
