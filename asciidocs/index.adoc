@@ -3,7 +3,7 @@
 
 ## Ausgangssituation:
 
-Die TNMS-Helfenberg ist eine Schule mit 65 Schülern und Schülerinnen
+Die TNMS-Helfenberg ist eine Schule mit 65 Schülerinnen und Schüler
 mit dem Fokus auf Technik, Mathematik und Englisch.
 An jedem Schultag wird an die Schüler eine Mahlzeit pro Kopf ausgegeben.
 Um die Kosten fürs Essen später zu berechnen
@@ -30,4 +30,14 @@ täglich immer eine Mahlzeit bekommt. Die Berechnungen und Kosten werden automat
 anschließend in Excel Tabellen exportiert.
 
 
+## Ziele:
+
+Unser Ziel ist die Erstellung eines Programmes welches die Abbrechnung, Verwaltung und Protokollierung der täglichen Mahlzeiten vereinfachet.
+
+
+## Mengengerüst:
+
+Derzeit umfasst die Schüleranzahl rund 65 SchülerInnen
+und um unser Program in der Schule verwenden zukönnen muss es in der Lage sein
+die Anzahl der Mahlzeiten, Berechnungen der Kosten sowie Abbrechnungen verwalten zu können.
 
