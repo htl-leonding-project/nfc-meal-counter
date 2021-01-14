@@ -1,12 +1,31 @@
 package at.htl.mealcounter.entity;
 
+
+import javax.persistence.*;
+
+@Entity
+@Table(name = "PERSON")
 public class Person {
 
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id
+    @Column(name = "ID")
     private Long id;
+
+
+    @Column(name = "NFC_ID")
     private String nfcId;
+
+    @Column(name = "FIRST_NAME")
     private String firstName;
+
+    @Column(name = "LAST_NAME")
     private String lastName;
+
+    @Column(name = "YEAR")
     private int year;
+
+    @Column(name = "CLASS_NAME")
     private String className;
 
     public Person() {
