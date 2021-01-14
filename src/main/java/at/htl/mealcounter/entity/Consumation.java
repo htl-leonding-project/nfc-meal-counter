@@ -1,11 +1,27 @@
 package at.htl.mealcounter.entity;
 
+import javax.persistence.*;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
+@Entity
+@Table(name = "CONSUMATION")
 public class Consumation {
+
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+
+    @ManyToOne(cascade = {CascadeType.DETACH,CascadeType.MERGE,CascadeType.PERSIST,CascadeType.REFRESH})
+    @JoinColumn(name = "PERSON_ID")
     Person person;
+
+    @Column(name = "DATE")
     LocalDate date;
+
+    @Column(name = "HASCONSUMED")
     boolean hasConsumed;
 
     public Consumation() {
