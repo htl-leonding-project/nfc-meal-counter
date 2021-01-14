@@ -16,3 +16,18 @@ Es sind derzeit 5 Leute mit der Abrechnung beschäftigt.
 4 KV's die eine Papiertabelle abzeichnen und eine 5. Person
 die die Tabelle vorbereitet und nach Kontrolle digitalisiert.
 
+
+## Problemstellung:
+
+Das händische mit Protokollieren der Kosten ist nicht wirklich zeitaufwendig, aber die verwendete Zeit,
+kann für andere nutzvolle Dinge verwendet werden.
+
+
+## Aufgabenstellung:
+
+Es ist ein Programm zu entwickeln, dass Überprüft, das jede Schülerin und jeder Schüler an der TNMS Helfenberg,
+täglich immer eine Mahlzeit bekommt. Die Berechnungen und Kosten werden automatisch mit protokolliert und
+anschließend in Excel Tabellen exportiert.
+
+
+
