@@ -1,1 +1,18 @@
 = nfc meal counter
+
+
+## Ausgangssituation:
+
+Die TNMS-Helfenberg ist eine Schule mit 65 Schülern und Schülerinnen
+mit dem Fokus auf Technik, Mathematik und Englisch.
+An jedem Schultag wird an die Schüler eine Mahlzeit pro Kopf ausgegeben.
+Um die Kosten fürs Essen später zu berechnen
+wird zurzeit alles händisch mit protokolliert.
+
+
+## Ist-Zustand:
+
+Es sind derzeit 5 Leute mit der Abrechnung beschäftigt.
+4 KV's die eine Papiertabelle abzeichnen und eine 5. Person
+die die Tabelle vorbereitet und nach Kontrolle digitalisiert.
+
