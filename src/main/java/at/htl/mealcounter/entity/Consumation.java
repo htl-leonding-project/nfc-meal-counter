@@ -8,7 +8,7 @@ import java.time.LocalDate;
 @NamedQueries({
         @NamedQuery(
                 name = "Consumation.findAll",
-                query = "select c from Person c"
+                query = "select c from Consumation c"
         )
 })
 
