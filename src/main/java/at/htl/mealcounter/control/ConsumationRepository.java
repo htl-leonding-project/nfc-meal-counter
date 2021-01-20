@@ -14,7 +14,7 @@ public class ConsumationRepository {
     @Inject
     EntityManager em;
 
-    public Consumation findById(String id) {
+    public Consumation findById(long id) {
         return em.find(Consumation.class,id);
     }
 
