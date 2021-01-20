@@ -30,5 +30,6 @@ public class PersonRepository {
 
     @Transactional
     public void delete(long id) {
+        em.remove(id);
     }
 }
