@@ -1,0 +1,59 @@
+= Besprechungsprotokoll 29.10.2020
+Kelly Tran
+1.0, 2020-11-06: Some notes
+ifndef::imagesdir[:imagesdir: images]
+:icons: font
+//:sectnums:    // Nummerierung der Überschriften / section numbering
+//:toc: left
+
+//Need this blank line after ifdef, don't know why...
+ifdef::backend-html5[]
+
+// https://fontawesome.com/v4.7.0/icons/
+icon:file-text-o[link=https://raw.githubusercontent.com/htl-leonding-college/asciidoctor-docker-template/master/asciidocs/{docname}.adoc] ‏ ‏ ‎
+icon:github-square[link=https://github.com/htl-leonding-college/asciidoctor-docker-template] ‏ ‏ ‎
+icon:home[link=https://htl-leonding.github.io/]
+endif::backend-html5[]
+
+
+.Teilnehmer
+|===
+|anwesend |Verteiler
+
+|Vorname Nachname
+|
+
+|TK
+|
+
+|TS
+|
+|MR
+|
+
+
+|===
+
+.Ort und Zeit
+[cols=2*]
+|===
+|Ort
+|Online-Unterricht (Discord)
+
+|von-bis
+|Mo. 15.01.2021
+|Dauer
+|30 min
+|===
+
+
+
+== Besprochene Themen
+
+* Uns wurde vom Prof. Stütz als erstes beauftragt, dass wir die IP-Adresse des Raspberry Pi's herausfinden sollte.
+* Anschließend mussten wir das Raspberry Pi in unserem Projekt übertragen bzw. eine Verbindung zwischen Projelt und dem Rasberry Pi herstellen.
+* Prof. Stütz zeigte uns dann wie man Maven & Java auf das Rasberry Pi hinzufügt
+
+
+image::images/01.jpeg
+
