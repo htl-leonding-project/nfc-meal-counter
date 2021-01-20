@@ -15,7 +15,7 @@ public class PersonRepository {
     @Inject
     EntityManager em;
 
-    public Person findById(String id) {
+    public Person findById(long id) {
        return em.find(Person.class,id);
     }
 
