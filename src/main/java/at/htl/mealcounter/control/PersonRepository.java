@@ -20,7 +20,7 @@ public class PersonRepository {
     }
 
     public List<Person> findAll() {
-        return null;
+        return em.createNamedQuery("Person.findAll", Person.class).getResultList();
     }
 
     @Transactional

@@ -5,6 +5,12 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "PERSON")
+@NamedQueries({
+        @NamedQuery(
+                name = "Person.findAll",
+                query = "select p from Person  p"
+        )
+})
 public class Person {
 
     @GeneratedValue(strategy = GenerationType.IDENTITY)
