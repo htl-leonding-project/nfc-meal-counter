@@ -2,10 +2,16 @@ package at.htl.mealcounter.entity;
 
 import javax.persistence.*;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "CONSUMATION")
+@NamedQueries({
+        @NamedQuery(
+                name = "Consumation.findAll",
+                query = "select c from Person c"
+        )
+})
+
 public class Consumation {
 
 
@@ -16,13 +22,13 @@ public class Consumation {
 
     @ManyToOne(cascade = {CascadeType.DETACH,CascadeType.MERGE,CascadeType.PERSIST,CascadeType.REFRESH})
     @JoinColumn(name = "PERSON_ID")
-    Person person;
+    private Person person;
 
     @Column(name = "DATE")
-    LocalDate date;
+    private LocalDate date;
 
     @Column(name = "HASCONSUMED")
-    boolean hasConsumed;
+    private boolean hasConsumed;
 
     public Consumation() {
     }

@@ -5,6 +5,12 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "PERSON")
+@NamedQueries({
+        @NamedQuery(
+                name = "Person.findAll",
+                query = "select p from Person  p"
+        )
+})
 public class Person {
 
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -22,8 +28,8 @@ public class Person {
     @Column(name = "LAST_NAME")
     private String lastName;
 
-    @Column(name = "YEAR")
-    private int year;
+    @Column(name = "YEARNO")
+    private int yearno;
 
     @Column(name = "CLASS_NAME")
     private String className;
@@ -31,10 +37,10 @@ public class Person {
     public Person() {
     }
 
-    public Person(String firstName, String lastName, int year, String className) {
+    public Person(String firstName, String lastName, int yearno, String className) {
         this.firstName = firstName;
         this.lastName = lastName;
-        this.year = year;
+        this.yearno = yearno;
         this.className = className;
     }
 
@@ -71,12 +77,12 @@ public class Person {
         this.lastName = lastName;
     }
 
-    public int getYear() {
-        return year;
+    public int getYearno() {
+        return yearno;
     }
 
-    public void setYear(int year) {
-        this.year = year;
+    public void setYearno(int yearno) {
+        this.yearno = yearno;
     }
 
     public String getClassName() {
@@ -96,7 +102,7 @@ public class Person {
                 ", nfcId='" + nfcId + '\'' +
                 ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
-                ", year=" + year +
+                ", year=" + yearno +
                 ", className='" + className + '\'' +
                 '}';
     }
