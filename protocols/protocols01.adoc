@@ -52,9 +52,12 @@ endif::backend-html5[]
 == Besprochene Themen
 
 * Uns wurde vom Prof. Stütz als erstes beauftragt, dass wir die IP-Adresse des Raspberry Pi's herausfinden sollte.
-* Anschließend mussten wir das Raspberry Pi in unserem Projekt übertragen bzw. eine Verbindung zwischen Projelt und dem Rasberry Pi herstellen.
+* Anschließend mussten wir das Raspberry Pi in unserem Projekt übertragen bzw. eine Verbindung zwischen Projekt und dem Rasberry Pi herstellen.
+* Wir haben zwischen dem Projekt und dem Raspberry Pi eine Verbindung hergestellt wie es in dem zweiten Screenshit zu sehen ist.
 * Prof. Stütz zeigte uns dann wie man Maven & Java auf das Rasberry Pi hinzufügt
+*
 
 
 image::images/01.jpeg
+image::images/03.jpeg
 
