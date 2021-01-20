@@ -1,6 +1,7 @@
 package at.htl.mealcounter.control;
 
 
+import at.htl.mealcounter.entity.Consumation;
 import at.htl.mealcounter.entity.Person;
 import io.quarkus.runtime.StartupEvent;
 
@@ -10,6 +11,7 @@ import javax.inject.Inject;
 import javax.persistence.Entity;
 import javax.persistence.EntityManager;
 import javax.transaction.Transactional;
+import java.time.LocalDate;
 
 @ApplicationScoped
 public class InitBean {
@@ -28,9 +30,13 @@ public class InitBean {
         em.persist(paula);
 
 
+        Consumation consumation1 = new Consumation(brooke, LocalDate.of(2021,1,8),true);
+        Consumation consumation2 = new Consumation(brooke, LocalDate.of(2021,1,9),false);
+        Consumation consumation3 = new Consumation(brooke, LocalDate.of(2021,1,10),true);
 
-
-
+        em.persist(consumation1);
+        em.persist(consumation2);
+        em.persist(consumation3);
     }
 
 
