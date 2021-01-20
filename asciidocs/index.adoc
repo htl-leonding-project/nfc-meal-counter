@@ -41,3 +41,18 @@ Derzeit umfasst die Schüleranzahl rund 65 SchülerInnen
 und um unser Program in der Schule verwenden zukönnen muss es in der Lage sein
 die Anzahl der Mahlzeiten, Berechnungen der Kosten sowie Abbrechnungen verwalten zu können.
 
+## Use-Case:
+[plantuml]
+----
+        left to right direction
+        actor Person
+
+        rectangle {
+
+        Person -- (consumes something)
+
+
+        }
+----
+
+
