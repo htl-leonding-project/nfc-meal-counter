@@ -2,10 +2,16 @@ package at.htl.mealcounter.entity;
 
 import javax.persistence.*;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "CONSUMATION")
+@NamedQueries({
+        @NamedQuery(
+                name = "Consumation.findAll",
+                query = "select c from Person c"
+        )
+})
+
 public class Consumation {
 
 
