@@ -1,0 +1,33 @@
+GET http://localhost:8080/api/consumation
+
+####
+
+POST http://localhost:8080/api/consumation
+Content-Type: application/json
+
+{
+  "abbr": "schutz",
+  "name": "Schutzhunde-Ausbildung"
+}
+
+
+
+####
+
+GET http://localhost:8080/api/person
+
+####
+POST http://localhost:8080/api/person
+Content-Type: application/json
+
+{
+  "firstName": "Rosi",
+  "lastName": "Dosi",
+  "yearno": 2020,
+  "className": "1c"
+}
+
+
+###
+
+GET http://localhost:8080/api/person/3
