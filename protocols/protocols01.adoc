@@ -16,6 +16,7 @@ icon:home[link=https://htl-leonding.github.io/]
 endif::backend-html5[]
 
 
+
 .Teilnehmer
 |===
 |anwesend |Verteiler
