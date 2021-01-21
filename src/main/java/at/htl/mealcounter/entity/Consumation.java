@@ -42,7 +42,7 @@ public class Consumation {
     //region getter and setter
 
 
-    public Long getId() {
+    public long getId() {
         return id;
     }
 
