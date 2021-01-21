@@ -6,10 +6,15 @@ POST http://localhost:8080/api/consumation
 Content-Type: application/json
 
 {
-  "abbr": "schutz",
-  "name": "Schutzhunde-Ausbildung"
+  "person":{
+    "firstName": "Rosi",
+    "lastName": "Dosi",
+    "yearno": 2020,
+    "className": "1c"
+  },
+  "date": "2020-06-06",
+  "hasConsumed" : "true"
 }
-
 
 
 ####
