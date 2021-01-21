@@ -11,10 +11,12 @@ import org.junit.jupiter.api.Test;
 
 import javax.inject.Inject;
 import javax.sql.DataSource;
+import javax.transaction.Transactional;
 import java.time.LocalDate;
 
 import static org.assertj.db.output.Outputs.output;
 import static org.junit.jupiter.api.Assertions.*;
+
 
 @QuarkusTest
 class PersonRepositoryTest {
@@ -34,7 +36,7 @@ class PersonRepositoryTest {
     void save() {
 
         Person person = new Person("Michelle", "Obama", 2021, "4a");
-        person = personRepository.save(person);
+        personRepository.save(person);
 
         Table table = new Table(dataSource, DatabaseHelper.PERSON_TABLE);
         output(table).toConsole();
@@ -44,6 +46,27 @@ class PersonRepositoryTest {
                 .value("LAST_NAME").isEqualTo(person.getLastName())
                 .value("YEARNO").isEqualTo(person.getYearno())
                 .value("CLASS_NAME").isEqualTo(person.getClassName());
+    }
+
+
+    @Test
+    @Order(3)
+    void delete() {
+
+        Person person = new Person("Michelle", "Obama", 2021, "4a");
+        person = personRepository.save(person);
+
+        Table table = new Table(dataSource, DatabaseHelper.PERSON_TABLE);
+        output(table).toConsole();
+
+        int rowsBefore = table.getRowsList().size();
+        personRepository.delete(person.getId());
+        table = new Table(dataSource, DatabaseHelper.PERSON_TABLE);
+        output(table).toConsole();
+        int rowsAfter = table.getRowsList().size();
+
+        org.assertj.core.api.Assertions.assertThat(rowsBefore-1).isEqualTo(rowsAfter);
+
     }
 
 }
