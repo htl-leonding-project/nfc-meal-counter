@@ -95,15 +95,13 @@ class PersonRepositoryTest {
         Person person = personRepository.findById(2);
 
 
-        String[] expected = {String.valueOf(person.getId()), person.getClassName(), person.getFirstName(), person.getLastName()};
-        String[] actual = {
-                table.getRow(1).getValuesList().get(0).getValue().toString(),
-                table.getRow(1).getValuesList().get(1).getValue().toString(),
-                table.getRow(1).getValuesList().get(2).getValue().toString(),
-                table.getRow(1).getValuesList().get(3).getValue().toString()
-        };
+        Assertions.assertThat(table).row((int) (person.getId()-1))
+                .value("FIRST_NAME").isEqualTo(person.getFirstName())
+                .value("LAST_NAME").isEqualTo(person.getLastName())
+                .value("YEARNO").isEqualTo(person.getYearno())
+                .value("CLASS_NAME").isEqualTo(person.getClassName());
 
-        org.assertj.core.api.Assertions.assertThat(expected).isEqualTo(actual);
+
     }
 
 }
