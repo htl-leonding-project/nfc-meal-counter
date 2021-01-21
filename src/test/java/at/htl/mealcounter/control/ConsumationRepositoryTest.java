@@ -76,5 +76,21 @@ class ConsumationRepositoryTest {
 
     }
 
+    @Test
+    @Order(3)
+    void findAll() {
+
+
+        int findAllRows = consumationRepository.findAll().size();
+
+        Table table = new Table(dataSource, DatabaseHelper.CONSUMATION_TABLE);
+
+
+        int tableRows = table.getRowsList().size();
+        output(table).toConsole();
+
+        org.assertj.core.api.Assertions.assertThat(findAllRows).isEqualTo(tableRows);
+    }
+
 
 }
