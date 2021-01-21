@@ -29,7 +29,7 @@ public class ConsumationRepository {
 
     @Transactional
     public void delete(long id) {
-        em.remove(id);
+        em.remove(findById(id));
     }
 
 }
