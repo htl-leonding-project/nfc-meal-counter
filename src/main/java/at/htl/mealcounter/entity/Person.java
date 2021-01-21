@@ -45,7 +45,7 @@ public class Person {
     }
 
     //region getter and setter
-    public Long getId() {
+    public long getId() {
         return id;
     }
 
