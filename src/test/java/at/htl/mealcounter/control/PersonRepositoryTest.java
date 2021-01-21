@@ -69,4 +69,20 @@ class PersonRepositoryTest {
 
     }
 
+    @Test
+    @Order(4)
+    void findAll() {
+
+
+        int findAllRows = personRepository.findAll().size();
+
+        Table table = new Table(dataSource, DatabaseHelper.PERSON_TABLE);
+
+
+        int tableRows = table.getRowsList().size();
+        output(table).toConsole();
+
+        org.assertj.core.api.Assertions.assertThat(findAllRows).isEqualTo(tableRows);
+    }
+
 }
