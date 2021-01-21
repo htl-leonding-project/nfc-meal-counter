@@ -50,7 +50,7 @@ class PersonRepositoryTest {
 
 
     @Test
-    @Order(3)
+    @Order(2)
     void delete() {
 
         Person person = new Person("Michelle", "Obama", 2021, "4a");
