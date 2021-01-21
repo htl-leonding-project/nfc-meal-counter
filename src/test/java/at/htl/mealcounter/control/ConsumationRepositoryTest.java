@@ -92,5 +92,22 @@ class ConsumationRepositoryTest {
         org.assertj.core.api.Assertions.assertThat(findAllRows).isEqualTo(tableRows);
     }
 
+    @Test
+    @Order(4)
+    void findById() {
+
+        Table table = new Table(dataSource, DatabaseHelper.CONSUMATION_TABLE);
+
+        Consumation consumation = consumationRepository.findById(2L);
+
+        output(table).toConsole();
+
+        Assertions.assertThat(table).row((int) (consumation.getId()-1))
+                .value()
+                .value("DATE").isEqualTo(consumation.getDate())
+                .value("HASCONSUMED").isEqualTo(consumation.isHasConsumed());
+
+    }
+
 
 }
