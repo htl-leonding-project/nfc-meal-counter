@@ -71,7 +71,12 @@ public class Consumation {
     }
 
     public void setHasConsumed(boolean hasConsumed) {
-        this.hasConsumed = hasConsumed;
+
+        if(this.hasConsumed = false){
+            this.hasConsumed = hasConsumed;
+        }else{
+            throw new IllegalArgumentException("Schüler hat bereits sein essen bekommen");
+        }
     }
     //endregion
 
