@@ -10,6 +10,7 @@ import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
 
 import javax.inject.Inject;
+import javax.management.StringValueExp;
 import javax.sql.DataSource;
 import javax.transaction.Transactional;
 import java.time.LocalDate;
@@ -83,6 +84,26 @@ class PersonRepositoryTest {
         output(table).toConsole();
 
         org.assertj.core.api.Assertions.assertThat(findAllRows).isEqualTo(tableRows);
+    }
+
+    @Test
+    @Order(5)
+    void findById() {
+
+        Table table = new Table(dataSource, DatabaseHelper.PERSON_TABLE);
+
+        Person person = personRepository.findById(2);
+
+
+        String[] expected = {String.valueOf(person.getId()), person.getClassName(), person.getFirstName(), person.getLastName()};
+        String[] actual = {
+                table.getRow(1).getValuesList().get(0).getValue().toString(),
+                table.getRow(1).getValuesList().get(1).getValue().toString(),
+                table.getRow(1).getValuesList().get(2).getValue().toString(),
+                table.getRow(1).getValuesList().get(3).getValue().toString()
+        };
+
+        org.assertj.core.api.Assertions.assertThat(expected).isEqualTo(actual);
     }
 
 }
