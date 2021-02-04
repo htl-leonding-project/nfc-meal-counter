@@ -4,7 +4,7 @@ package at.htl.mealcounter.entity;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "PERSON")
+@Table(name = "M_PERSON")
 @NamedQueries({
         @NamedQuery(
                 name = "Person.findAll",

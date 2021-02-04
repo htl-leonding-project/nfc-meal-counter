@@ -4,7 +4,7 @@ import javax.persistence.*;
 import java.time.LocalDate;
 
 @Entity
-@Table(name = "CONSUMATION")
+@Table(name = "M_CONSUMATION")
 @NamedQueries({
         @NamedQuery(
                 name = "Consumation.findAll",
