@@ -19,37 +19,55 @@ die die Tabelle vorbereitet und nach Kontrolle digitalisiert.
 
 ## Problemstellung:
 
-Das händische mit Protokollieren der Kosten ist nicht wirklich zeitaufwendig, aber die verwendete Zeit,
-kann für andere nutzvolle Dinge verwendet werden.
+
+Das händische Protokollieren ist zwar nicht schwierig, kann aber für das Personal aufwendig sein. Die Zeit, die dafür gebraucht wird, kann für andere, nutzvolle Dinge verwendet werden.
 
 
 ## Aufgabenstellung:
 
-Es ist ein Programm zu entwickeln, dass Überprüft, das jede Schülerin und jeder Schüler an der TNMS Helfenberg,
-täglich immer eine Mahlzeit bekommt. Die Berechnungen und Kosten werden automatisch mit protokolliert und
+Es ist ein Programm zu entwickeln, dass mithilfe eines nfc-Readers überprüft, das jede Schülerin und jeder Schüler an der TNMS Helfenberg,
+täglich immer eine Mahlzeit bekommt. Die Schüler legen eine nfc-Karte auf den nfc-Reader und so werden die Berechnungen und Kosten automatisch mit protokolliert, in die Datenbank geschrieben und
 anschließend in Excel Tabellen exportiert.
 
 
 ## Ziele:
 
-Unser Ziel ist die Erstellung eines Programmes welches die Abbrechnung, Verwaltung und Protokollierung der täglichen Mahlzeiten vereinfachet.
+* Schelle Protokollierung der Essensabholungen der Schüler
+* Erleichterung der Verwaltung
+* Verhinderung von Missbrauch also keine doppelten Essensabholungen
+* Verwaltung der Anzahl der Mahlzeiten jedes Schülers
+* Verwaltung der Berechnungen der Kosten sowie Abrechnungen jedes Schülers
 
 
 ## Mengengerüst:
 
 Derzeit umfasst die Schüleranzahl rund 65 SchülerInnen
-und um unser Program in der Schule verwenden zukönnen muss es in der Lage sein
-die Anzahl der Mahlzeiten, Berechnungen der Kosten sowie Abbrechnungen verwalten zu können.
+
 
 ## Use-Case:
+
+
+* Ein Schüler holt sich ein Essen
+* Ein Schüler versucht sich ein 2. Essen zu holen und es wird ihm verweigert
+* Monatlicher Exel-Export wird durchgeführt
+* Für jeden Schüler wird eine Essensrechnung erstellt
+
+
+
 [plantuml]
+
+
 ----
         left to right direction
         actor Person
 
         rectangle {
 
-        Person -- (consumes something)
+        Person -- (Ein Schüler holt sich ein Essen)
+        Person -- (Ein 2. Essen wird dem Schüler verweigert)
+        Person -- (Monatlicher Exel-Export wird durchgeführt)
+        Person -- (Für jeden Schüler wird eine Essensrechnung erstellt)
+
 
 
         }
