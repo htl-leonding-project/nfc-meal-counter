@@ -64,11 +64,9 @@ Derzeit umfasst die Schüleranzahl rund 65 SchülerInnen
         rectangle {
 
         Person -- (Ein Schüler holt sich ein Essen)
-        Person -- (Ein 2. Essen wird dem Schüler verweigert)
+        (Ein Schüler holt sich ein Essen) -- (Ein 2. Essen wird dem Schüler verweigert)
         Person -- (Monatlicher Exel-Export wird durchgeführt)
         Person -- (Für jeden Schüler wird eine Essensrechnung erstellt)
-
-
 
         }
 ----
