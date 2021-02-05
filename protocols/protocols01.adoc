@@ -69,7 +69,7 @@ image::03.jpeg[]
 * sudo raspi-config
 ** mit diesem Befehl kommt man zu der Oberfläche des Raspberry Pi's
 
-##image::##06.jpeg[]
+image::06.jpeg[]
 
 * sudo apt update
 ** mit dem Befehl sudo apt-get update werden Paketinformationen
