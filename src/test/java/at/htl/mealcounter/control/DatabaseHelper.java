@@ -6,8 +6,8 @@ import javax.sql.DataSource;
 
 public class DatabaseHelper {
 
-    public static final String CONSUMATION_TABLE = "CONSUMATION";
-    public static final String PERSON_TABLE = "PERSON";
+    public static final String CONSUMATION_TABLE = "M_CONSUMATION";
+    public static final String PERSON_TABLE = "M_PERSON";
 
 
     public static final String USERNAME = "app";
