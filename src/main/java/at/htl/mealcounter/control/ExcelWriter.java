@@ -14,14 +14,15 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.List;
 
-
+@ApplicationScoped
 public class ExcelWriter {
 
 
+   @Inject
+   PersonRepository personRepository;
 
     public void writeExcel() throws IOException {
 
-     PersonRepository personRepository = new PersonRepository();
        Person person = personRepository.findById(1);
 
         System.out.println(person.toString());
