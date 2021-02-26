@@ -12,18 +12,26 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.Month;
+import java.time.format.DateTimeFormatter;
+import java.time.temporal.ChronoUnit;
+import java.util.Calendar;
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 @ApplicationScoped
 public class ExcelWriter {
 
 
-   @Inject
-   PersonRepository personRepository;
+    @Inject
+    PersonRepository personRepository;
 
     public void writeExcel() throws IOException {
 
-       Person person = personRepository.findById(1);
+        Person person = personRepository.findById(1);
 
         System.out.println(person.toString());
 
@@ -46,28 +54,70 @@ public class ExcelWriter {
         headerStyle.setFont(font);
 
         Cell headerCell = header.createCell(0);
-        headerCell.setCellValue("Name");
-        headerCell.setCellStyle(headerStyle);
+        headerCell.setCellValue("Abrechnungszeitraum: ");
+
 
         headerCell = header.createCell(1);
-        headerCell.setCellValue("Age");
-        headerCell.setCellStyle(headerStyle);
+        Calendar cal = Calendar.getInstance();
+        headerCell.setCellValue(new SimpleDateFormat("MMM").format(cal.getTime()) + " " + Calendar.getInstance().get(Calendar.YEAR));
 
-        CellStyle style = workbook.createCellStyle();
-        style.setWrapText(true);
+//        Row row = sheet.createRow(1);
+//        Cell cell = row.createCell(0);
+//        cell.setCellValue("Klasse: ");
+//
+//        row = sheet.createRow(1);
+//        cell = row.createCell(1);
+//        String classname = personRepository.findById(1).getClassName();
+//        headerCell.setCellValue(classname);
 
-        Row row = sheet.createRow(2);
+
+        Row row = sheet.createRow(1);
         Cell cell = row.createCell(0);
-        cell.setCellValue("kuchen");
-        cell.setCellStyle(style);
+        cell.setCellValue("Klasse: ");
 
         cell = row.createCell(1);
-        cell.setCellValue(20);
-        cell.setCellStyle(style);
+        String classname = personRepository.findById(1).getClassName();
+        cell.setCellValue(classname);
+
+        Row rowPreis = sheet.createRow(2);
+        Cell cellPreis = rowPreis.createCell(0);
+        cellPreis.setCellValue("Preis eines Menüs: ");
+
+        cellPreis = rowPreis.createCell(1);
+        cellPreis.setCellValue("5");
+
+        Row rowAusgaben = sheet.createRow(3);
+
+        Cell cellAusgaben;
+
+        LocalDate startDate = LocalDate.of(2021, LocalDate.now().getMonth(), 1);
+        System.out.println(startDate);
+        LocalDate endDate = startDate.plusMonths(1);
+        System.out.println(endDate);
+
+        long numOfDaysBetween = ChronoUnit.DAYS.between(startDate, endDate);
+        List<LocalDate> datesUntil = IntStream.iterate(0, i -> i + 1)
+                .limit(numOfDaysBetween)
+                .mapToObj(i -> startDate.plusDays(i))
+                .collect(Collectors.toList());
+
+        for (int i = 0; i < datesUntil.size(); i++) {
+
+            cellAusgaben = rowAusgaben.createCell(i+1);
+            cellAusgaben.setCellValue(datesUntil.get(i).toString());
+        }
+
+        cellAusgaben = rowAusgaben.createCell(datesUntil.size()+1);
+        cellAusgaben.setCellValue("Anzahl der Menüs");
+        cellAusgaben = rowAusgaben.createCell(datesUntil.size()+2);
+        cellAusgaben.setCellValue("Betrag");
+
+        
+
 
         File currDir = new File(".");
         String path = currDir.getAbsolutePath();
-        String fileLocation = path.substring(0, path.length() - 1) + "rosi.xlsx";
+        String fileLocation = path.substring(0, path.length() - 1) + "test.xlsx";
 
         FileOutputStream outputStream = new FileOutputStream(fileLocation);
         workbook.write(outputStream);

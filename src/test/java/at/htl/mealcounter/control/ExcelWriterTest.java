@@ -12,7 +12,7 @@ import java.util.Map;
 @QuarkusTest
 class ExcelWriterTest {
     //private ExcelWriter excelWriter;
-    private static String FILE_NAME = "rosi.xlsx";
+    private static String FILE_NAME = "test.xlsx";
     private String fileLocation;
 
     @Inject
