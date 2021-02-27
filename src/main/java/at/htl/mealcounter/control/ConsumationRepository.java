@@ -6,6 +6,7 @@ import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.transaction.Transactional;
+import java.time.LocalDate;
 import java.util.List;
 
 @ApplicationScoped
@@ -30,6 +31,11 @@ public class ConsumationRepository {
     @Transactional
     public void delete(long id) {
         em.remove(findById(id));
+    }
+
+    public Consumation findByDate(LocalDate date) {
+        return em.createQuery("select c from Consumation c where " +
+                "c.date =" + date , Consumation.class).getSingleResult();
     }
 
 }
