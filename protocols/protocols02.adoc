@@ -79,4 +79,6 @@ endif::backend-html5[]
 * scp ./apdu4j.jar pi@192.168.178.23
 ** mit diesem Befehl werden die Files auf das Raspbeery Pi rüber übertragen
 
+image::08.jpeg[]
+
 
