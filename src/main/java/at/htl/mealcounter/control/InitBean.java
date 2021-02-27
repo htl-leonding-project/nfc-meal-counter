@@ -20,10 +20,17 @@ public class InitBean {
     @Inject
     EntityManager em;
 
+    @Inject
+    PersonRepository personRepository;
+
     @Transactional
     public void startUp(@Observes StartupEvent startupEvent) {
+
+        personRepository.readFromCsv();
+
         Person brooke = new Person("Brooke", "Bradford", 2020, "1a");
         Person paula = new Person("Paula", "Zack", 2020, "1a");
+        Person franz = new Person("Franz", "Zack", 2020, "1a");
 
 
         em.persist(brooke);
