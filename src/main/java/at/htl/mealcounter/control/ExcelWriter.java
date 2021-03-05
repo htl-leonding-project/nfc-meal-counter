@@ -53,23 +53,17 @@ public class ExcelWriter {
         font.setBold(true);
         headerStyle.setFont(font);
 
+        // Abrechnungszeitraum
+
         Cell headerCell = header.createCell(0);
         headerCell.setCellValue("Abrechnungszeitraum: ");
-
 
         headerCell = header.createCell(1);
         Calendar cal = Calendar.getInstance();
         headerCell.setCellValue(new SimpleDateFormat("MMM").format(cal.getTime()) + " " + Calendar.getInstance().get(Calendar.YEAR));
 
-//        Row row = sheet.createRow(1);
-//        Cell cell = row.createCell(0);
-//        cell.setCellValue("Klasse: ");
-//
-//        row = sheet.createRow(1);
-//        cell = row.createCell(1);
-//        String classname = personRepository.findById(1).getClassName();
-//        headerCell.setCellValue(classname);
 
+        // Klasse
 
         Row row = sheet.createRow(1);
         Cell cell = row.createCell(0);
@@ -79,6 +73,8 @@ public class ExcelWriter {
         String classname = personRepository.findById(1).getClassName();
         cell.setCellValue(classname);
 
+        // Preis
+
         Row rowPreis = sheet.createRow(2);
         Cell cellPreis = rowPreis.createCell(0);
         cellPreis.setCellValue("Preis eines Menüs: ");
@@ -86,8 +82,9 @@ public class ExcelWriter {
         cellPreis = rowPreis.createCell(1);
         cellPreis.setCellValue("5");
 
-        Row rowAusgaben = sheet.createRow(3);
+        // Datums Ausgaben
 
+        Row rowAusgaben = sheet.createRow(3);
         Cell cellAusgaben;
 
         LocalDate startDate = LocalDate.of(2021, LocalDate.now().getMonth(), 1);
@@ -103,14 +100,31 @@ public class ExcelWriter {
 
         for (int i = 0; i < datesUntil.size(); i++) {
 
-            cellAusgaben = rowAusgaben.createCell(i+1);
+            cellAusgaben = rowAusgaben.createCell(i+2);
             cellAusgaben.setCellValue(datesUntil.get(i).toString());
         }
+
+        // Anzahl der Menüs und Betrag
 
         cellAusgaben = rowAusgaben.createCell(datesUntil.size()+1);
         cellAusgaben.setCellValue("Anzahl der Menüs");
         cellAusgaben = rowAusgaben.createCell(datesUntil.size()+2);
         cellAusgaben.setCellValue("Betrag");
+
+        //
+
+        Row rowPerson;
+        Cell cellPerson;
+
+        for (int i = 0; i < personRepository.findAll().size(); i++) {
+            rowPerson = sheet.createRow(i + 4);
+            cellPerson = rowPerson.createCell(0);
+            cellPerson.setCellValue(personRepository.findById(i+1).getFirstName());
+            cellPerson = rowPerson.createCell(1);
+            cellPerson.setCellValue(personRepository.findById(i+1).getLastName());
+
+
+        }
 
         
 
@@ -122,5 +136,7 @@ public class ExcelWriter {
         FileOutputStream outputStream = new FileOutputStream(fileLocation);
         workbook.write(outputStream);
         workbook.close();
+
+
     }
 }
