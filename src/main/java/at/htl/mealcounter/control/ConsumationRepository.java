@@ -1,6 +1,7 @@
 package at.htl.mealcounter.control;
 
 import at.htl.mealcounter.entity.Consumation;
+import at.htl.mealcounter.entity.Person;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
@@ -33,9 +34,14 @@ public class ConsumationRepository {
         em.remove(findById(id));
     }
 
-    public Consumation findByDate(LocalDate date) {
+
+    public Consumation findByDateAndPerson(LocalDate date, Person person) {
         return em.createQuery("select c from Consumation c where " +
-                "c.date =" + date , Consumation.class).getSingleResult();
+                "c.date ='" + date + "' AND " +
+                "c.person ='" + person + "'", Consumation.class).getSingleResult();
     }
+
+
+
 
 }
