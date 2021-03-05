@@ -10,7 +10,7 @@ import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
 
 import javax.inject.Inject;
-import javax.management.StringValueExp;
+
 import javax.sql.DataSource;
 import javax.transaction.Transactional;
 import java.time.LocalDate;

@@ -19,6 +19,7 @@ import static org.junit.jupiter.api.Assertions.*;
 import javax.inject.Inject;
 import javax.sql.DataSource;
 
+import java.sql.Date;
 import java.time.LocalDate;
 
 @QuarkusTest
@@ -26,6 +27,9 @@ class ConsumationRepositoryTest {
 
     @Inject
     ConsumationRepository consumationRepository;
+
+    @Inject
+    PersonRepository personRepository;
 
     private static DataSource  dataSource;
 
@@ -106,6 +110,32 @@ class ConsumationRepositoryTest {
                 .value()
                 .value("DATE").isEqualTo(consumation.getDate())
                 .value("HASCONSUMED").isEqualTo(consumation.isHasConsumed());
+
+    }
+
+    @Test
+    @Order(5)
+    void findByDateandPerson() {
+
+        LocalDate date = LocalDate.of(2021,1,8);
+
+
+
+        Person person1 =  personRepository.findById(99);
+
+
+        Consumation findConsumation = consumationRepository.findByDateAndPerson(date,person1);
+
+        Table table = new Table(dataSource, DatabaseHelper.CONSUMATION_TABLE);
+
+        output(table).toConsole();
+
+        Assertions.assertThat(table).row(3)
+                .value()
+                .value("DATE").isEqualTo(date)
+                .value("PERSON_ID").isEqualTo(99);
+
+
 
     }
 
