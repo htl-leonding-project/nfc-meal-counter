@@ -8,6 +8,7 @@ import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.TemporalType;
 import javax.transaction.Transactional;
+import java.time.Instant;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.Date;
@@ -40,11 +41,12 @@ public class ConsumationRepository {
     }
 
 
-    public Consumation findByDateAndPerson(LocalDate date, Person person) {
+    public Consumation findByDateAndPerson(LocalDate myDate, Person person) {
+
         return em.createQuery("select c from Consumation c where " +
                 "c.date = :DATE AND " +
                 "c.person.id = :ID", Consumation.class)
-                .setParameter("DATE", java.sql.Date.valueOf(date), TemporalType.DATE)
+                .setParameter("DATE", myDate)
                 .setParameter("ID", person.getId())
                 .getSingleResult();
     }

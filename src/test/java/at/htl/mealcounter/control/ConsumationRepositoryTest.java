@@ -115,22 +115,20 @@ class ConsumationRepositoryTest {
 
     @Test
     @Order(5)
-    void findByDateandPerson() {
+    void findByDateAndPersonTest() {
 
         LocalDate date = LocalDate.of(2021,1,8);
 
+        Person person =  personRepository.findById(99);
 
 
-        Person person1 =  personRepository.findById(99);
-
-
-        Consumation findConsumation = consumationRepository.findByDateAndPerson(date,person1);
+        Consumation findConsumation = consumationRepository.findByDateAndPerson(date,person);
 
         Table table = new Table(dataSource, DatabaseHelper.CONSUMATION_TABLE);
 
         output(table).toConsole();
 
-        Assertions.assertThat(table).row(3)
+        Assertions.assertThat(table).row(0)
                 .value()
                 .value("DATE").isEqualTo(date)
                 .value("PERSON_ID").isEqualTo(99);
