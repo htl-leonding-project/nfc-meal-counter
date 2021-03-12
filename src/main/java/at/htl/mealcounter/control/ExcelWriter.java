@@ -84,8 +84,9 @@ public class ExcelWriter {
         Cell cellPreis = rowPreis.createCell(0);
         cellPreis.setCellValue("Preis eines Menüs: ");
 
+        double preisMenue = 5;
         cellPreis = rowPreis.createCell(1);
-        cellPreis.setCellValue("5");
+        cellPreis.setCellValue(preisMenue);
 
         // Datums Ausgaben
 
@@ -123,6 +124,7 @@ public class ExcelWriter {
 
         Row rowPerson;
         Cell cellPerson;
+        int anzahlMenues;
 
         for (int i = 0; i < personRepository.findAll().size(); i++) {
             rowPerson = sheet.createRow(i + 4);
@@ -131,19 +133,29 @@ public class ExcelWriter {
             cellPerson = rowPerson.createCell(1);
             cellPerson.setCellValue(personRepository.findById(i+1).getLastName());
 
-
-            System.out.println("--------");
-            for (int j = 0; j < datesUntilList.size() -1 ; j++) {
+            anzahlMenues = 0;
+            for (int j = 0; j < datesUntilList.size() - 1 ; j++) {
                 cellPerson = rowPerson.createCell(j+2);
 
                 Consumation personCosumation = consumationRepository.findByDateAndPerson(datesUntilList.get(j),personRepository.findById(i+1));
 
                 if(personCosumation != null){
-                    cellPerson.setCellValue(personCosumation.isHasConsumed());
+                    if(personCosumation.isHasConsumed()){
+                        cellPerson.setCellValue("1");
+                        anzahlMenues++;
+                    }else{
+                        cellPerson.setCellValue("0");
+                    }
+
                 }else{
                     cellPerson.setCellValue("kein Wert");
                 }
             }
+
+            cellPerson = rowPerson.createCell(datesUntilList.size() + 1);
+            cellPerson.setCellValue(anzahlMenues);
+            cellPerson = rowPerson.createCell(datesUntilList.size() + 2);
+            cellPerson.setCellValue(anzahlMenues * preisMenue );
         }
 
 
