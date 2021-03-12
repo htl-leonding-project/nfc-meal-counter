@@ -6,6 +6,7 @@ import at.htl.mealcounter.entity.Person;
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
+import javax.persistence.NoResultException;
 import javax.persistence.TemporalType;
 import javax.transaction.Transactional;
 import java.time.Instant;
@@ -43,12 +44,21 @@ public class ConsumationRepository {
 
     public Consumation findByDateAndPerson(LocalDate myDate, Person person) {
 
-        return em.createQuery("select c from Consumation c where " +
-                "c.date = :DATE AND " +
-                "c.person.id = :ID", Consumation.class)
-                .setParameter("DATE", myDate)
-                .setParameter("ID", person.getId())
-                .getSingleResult();
+        Consumation consumation;
+
+        try {
+            consumation = em.createQuery("select c from Consumation c where " +
+                    "c.date = :DATE AND " +
+                    "c.person.id = :ID", Consumation.class)
+                    .setParameter("DATE", myDate)
+                    .setParameter("ID", person.getId())
+                    .getSingleResult();
+
+        }catch (NoResultException e){
+            consumation = null;
+        }
+
+        return consumation;
     }
 
 
