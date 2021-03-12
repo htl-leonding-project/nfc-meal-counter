@@ -1,5 +1,6 @@
 package at.htl.mealcounter.control;
 
+import at.htl.mealcounter.entity.Consumation;
 import at.htl.mealcounter.entity.Person;
 import org.apache.poi.ss.usermodel.*;
 import org.apache.poi.xssf.usermodel.XSSFFont;
@@ -17,6 +18,7 @@ import java.time.LocalDate;
 import java.time.Month;
 import java.time.format.DateTimeFormatter;
 import java.time.temporal.ChronoUnit;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -28,6 +30,9 @@ public class ExcelWriter {
 
     @Inject
     PersonRepository personRepository;
+
+    @Inject
+    ConsumationRepository consumationRepository;
 
     public void writeExcel() throws IOException {
 
@@ -84,13 +89,13 @@ public class ExcelWriter {
 
         // Datums Ausgaben
 
+        List<LocalDate> datesUntilList = new ArrayList<>();
         Row rowAusgaben = sheet.createRow(3);
         Cell cellAusgaben;
 
         LocalDate startDate = LocalDate.of(2021, LocalDate.now().getMonth(), 1);
-        System.out.println(startDate);
         LocalDate endDate = startDate.plusMonths(1);
-        System.out.println(endDate);
+
 
         long numOfDaysBetween = ChronoUnit.DAYS.between(startDate, endDate);
         List<LocalDate> datesUntil = IntStream.iterate(0, i -> i + 1)
@@ -102,7 +107,10 @@ public class ExcelWriter {
 
             cellAusgaben = rowAusgaben.createCell(i+2);
             cellAusgaben.setCellValue(datesUntil.get(i).toString());
+            datesUntilList.add(datesUntil.get(i));
+
         }
+
 
         // Anzahl der Menüs und Betrag
 
@@ -124,7 +132,20 @@ public class ExcelWriter {
             cellPerson.setCellValue(personRepository.findById(i+1).getLastName());
 
 
+            System.out.println("--------");
+            for (int j = 0; j < datesUntilList.size() -1 ; j++) {
+                cellPerson = rowPerson.createCell(j+2);
+
+                Consumation personCosumation = consumationRepository.findByDateAndPerson(datesUntilList.get(j),personRepository.findById(i+1));
+
+                if(personCosumation != null){
+                    cellPerson.setCellValue(personCosumation.isHasConsumed());
+                }else{
+                    cellPerson.setCellValue("kein Wert");
+                }
+            }
         }
+
 
         
 
