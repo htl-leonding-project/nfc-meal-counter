@@ -66,4 +66,5 @@ public class PersonRepository {
         return em.createQuery("select p from Person p where p.className = :classname", Person.class)
                 .setParameter("classname", classname).getResultList();
     }
+
 }
