@@ -13,6 +13,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.lang.reflect.Array;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.Month;
@@ -80,19 +81,19 @@ public class ExcelWriter {
 
         // Preis
 
-        Row rowPreis = sheet.createRow(2);
-        Cell cellPreis = rowPreis.createCell(0);
-        cellPreis.setCellValue("Preis eines Menüs: ");
+        Row rowPrice = sheet.createRow(2);
+        Cell cellPrice = rowPrice.createCell(0);
+        cellPrice.setCellValue("Preis eines Menüs: ");
 
-        double preisMenue = 5;
-        cellPreis = rowPreis.createCell(1);
-        cellPreis.setCellValue(preisMenue);
+        double preisMenu = 5;
+        cellPrice = rowPrice.createCell(1);
+        cellPrice.setCellValue(preisMenu);
 
         // Datums Ausgaben
 
         List<LocalDate> datesUntilList = new ArrayList<>();
-        Row rowAusgaben = sheet.createRow(3);
-        Cell cellAusgaben;
+        Row rowOutput = sheet.createRow(3);
+        Cell cellOutput;
 
         LocalDate startDate = LocalDate.of(2021, LocalDate.now().getMonth(), 1);
         LocalDate endDate = startDate.plusMonths(1);
@@ -106,8 +107,8 @@ public class ExcelWriter {
 
         for (int i = 0; i < datesUntil.size(); i++) {
 
-            cellAusgaben = rowAusgaben.createCell(i+2);
-            cellAusgaben.setCellValue(datesUntil.get(i).toString());
+            cellOutput = rowOutput.createCell(i+2);
+            cellOutput.setCellValue(datesUntil.get(i).toString());
             datesUntilList.add(datesUntil.get(i));
 
         }
@@ -115,16 +116,17 @@ public class ExcelWriter {
 
         // Anzahl der Menüs und Betrag
 
-        cellAusgaben = rowAusgaben.createCell(datesUntil.size()+1);
-        cellAusgaben.setCellValue("Anzahl der Menüs");
-        cellAusgaben = rowAusgaben.createCell(datesUntil.size()+2);
-        cellAusgaben.setCellValue("Betrag");
+        cellOutput = rowOutput.createCell(datesUntil.size()+1);
+        cellOutput.setCellValue("Anzahl der Menüs");
+        cellOutput = rowOutput.createCell(datesUntil.size()+2);
+        cellOutput.setCellValue("Betrag");
 
         //
 
         Row rowPerson;
         Cell cellPerson;
-        int anzahlMenues;
+        int countMenu;
+        int[] countMeal = new int[personRepository.findAll().size()];
 
         for (int i = 0; i < personRepository.findAll().size(); i++) {
             rowPerson = sheet.createRow(i + 4);
@@ -133,7 +135,7 @@ public class ExcelWriter {
             cellPerson = rowPerson.createCell(1);
             cellPerson.setCellValue(personRepository.findById(i+1).getLastName());
 
-            anzahlMenues = 0;
+            countMenu = 0;
             for (int j = 0; j < datesUntilList.size() - 1 ; j++) {
                 cellPerson = rowPerson.createCell(j+2);
 
@@ -142,7 +144,11 @@ public class ExcelWriter {
                 if(personCosumation != null){
                     if(personCosumation.isHasConsumed()){
                         cellPerson.setCellValue("1");
-                        anzahlMenues++;
+                        countMenu++;
+
+                        countMeal[j] += 1;
+
+
                     }else{
                         cellPerson.setCellValue("0");
                     }
@@ -153,11 +159,21 @@ public class ExcelWriter {
             }
 
             cellPerson = rowPerson.createCell(datesUntilList.size() + 1);
-            cellPerson.setCellValue(anzahlMenues);
+            cellPerson.setCellValue(countMenu);
             cellPerson = rowPerson.createCell(datesUntilList.size() + 2);
-            cellPerson.setCellValue(anzahlMenues * preisMenue );
+            cellPerson.setCellValue(countMenu * preisMenu );
         }
 
+
+        Row countMealRow = sheet.createRow(104);
+        Cell countMealCell = countMealRow.createCell(1);
+        countMealCell.setCellValue("Anzahl Essen");
+
+        for (int i = 0; i < datesUntilList.size()  - 1; i++) {
+            countMealCell = countMealRow.createCell(2+i);
+            countMealCell.setCellValue(countMeal[i]);
+
+        }
 
         
 
