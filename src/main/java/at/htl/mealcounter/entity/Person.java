@@ -1,6 +1,5 @@
 package at.htl.mealcounter.entity;
 
-
 import javax.persistence.*;
 
 @Entity
@@ -8,16 +7,20 @@ import javax.persistence.*;
 @NamedQueries({
         @NamedQuery(
                 name = "Person.findAll",
-                query = "select p from Person  p"
+                query = "select p from Person p"
+        ),
+        @NamedQuery(
+                name = "Person.findByClass",
+                query = "select p from Person p where p.className = :classname"
         )
 })
+
 public class Person {
 
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
     @Column(name = "ID")
     private Long id;
-
 
     @Column(name = "NFC_ID")
     private String nfcId;
