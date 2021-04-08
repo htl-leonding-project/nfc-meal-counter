@@ -14,6 +14,7 @@ import javax.inject.Inject;
 import javax.sql.DataSource;
 import javax.transaction.Transactional;
 import java.time.LocalDate;
+import java.util.List;
 
 import static org.assertj.db.output.Outputs.output;
 import static org.junit.jupiter.api.Assertions.*;
@@ -102,6 +103,18 @@ class PersonRepositoryTest {
                 .value("CLASS_NAME").isEqualTo(person.getClassName());
 
 
+    }
+
+    @Test
+    @Order(6)
+    void t200_findByClass() {
+
+        Table table = new Table(dataSource, DatabaseHelper.PERSON_TABLE);
+        output(table).toConsole();
+
+        int classSize = personRepository.findByClass("1a").size();
+
+        org.assertj.core.api.Assertions.assertThat(classSize).isEqualTo(21);
     }
 
 }
