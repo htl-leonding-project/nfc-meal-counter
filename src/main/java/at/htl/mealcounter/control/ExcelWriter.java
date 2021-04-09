@@ -1,5 +1,6 @@
 package at.htl.mealcounter.control;
 
+import at.htl.mealcounter.entity.Consumation;
 import at.htl.mealcounter.entity.Person;
 import org.apache.poi.ss.usermodel.*;
 import org.apache.poi.xssf.usermodel.XSSFFont;
@@ -12,11 +13,13 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.lang.reflect.Array;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.Month;
 import java.time.format.DateTimeFormatter;
 import java.time.temporal.ChronoUnit;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -28,6 +31,9 @@ public class ExcelWriter {
 
     @Inject
     PersonRepository personRepository;
+
+    @Inject
+    ConsumationRepository consumationRepository;
 
     public void writeExcel() throws IOException {
 
@@ -75,22 +81,23 @@ public class ExcelWriter {
 
         // Preis
 
-        Row rowPreis = sheet.createRow(2);
-        Cell cellPreis = rowPreis.createCell(0);
-        cellPreis.setCellValue("Preis eines Menüs: ");
+        Row rowPrice = sheet.createRow(2);
+        Cell cellPrice = rowPrice.createCell(0);
+        cellPrice.setCellValue("Preis eines Menüs: ");
 
-        cellPreis = rowPreis.createCell(1);
-        cellPreis.setCellValue("5");
+        double preisMenu = 5;
+        cellPrice = rowPrice.createCell(1);
+        cellPrice.setCellValue(preisMenu);
 
         // Datums Ausgaben
 
-        Row rowAusgaben = sheet.createRow(3);
-        Cell cellAusgaben;
+        List<LocalDate> datesUntilList = new ArrayList<>();
+        Row rowOutput = sheet.createRow(3);
+        Cell cellOutput;
 
         LocalDate startDate = LocalDate.of(2021, LocalDate.now().getMonth(), 1);
-        System.out.println(startDate);
         LocalDate endDate = startDate.plusMonths(1);
-        System.out.println(endDate);
+
 
         long numOfDaysBetween = ChronoUnit.DAYS.between(startDate, endDate);
         List<LocalDate> datesUntil = IntStream.iterate(0, i -> i + 1)
@@ -100,21 +107,26 @@ public class ExcelWriter {
 
         for (int i = 0; i < datesUntil.size(); i++) {
 
-            cellAusgaben = rowAusgaben.createCell(i+2);
-            cellAusgaben.setCellValue(datesUntil.get(i).toString());
+            cellOutput = rowOutput.createCell(i+2);
+            cellOutput.setCellValue(datesUntil.get(i).toString());
+            datesUntilList.add(datesUntil.get(i));
+
         }
+
 
         // Anzahl der Menüs und Betrag
 
-        cellAusgaben = rowAusgaben.createCell(datesUntil.size()+1);
-        cellAusgaben.setCellValue("Anzahl der Menüs");
-        cellAusgaben = rowAusgaben.createCell(datesUntil.size()+2);
-        cellAusgaben.setCellValue("Betrag");
+        cellOutput = rowOutput.createCell(datesUntil.size()+1);
+        cellOutput.setCellValue("Anzahl der Menüs");
+        cellOutput = rowOutput.createCell(datesUntil.size()+2);
+        cellOutput.setCellValue("Betrag");
 
         //
 
         Row rowPerson;
         Cell cellPerson;
+        int countMenu;
+        int[] countMeal = new int[personRepository.findAll().size()];
 
         for (int i = 0; i < personRepository.findAll().size(); i++) {
             rowPerson = sheet.createRow(i + 4);
@@ -123,6 +135,43 @@ public class ExcelWriter {
             cellPerson = rowPerson.createCell(1);
             cellPerson.setCellValue(personRepository.findById(i+1).getLastName());
 
+            countMenu = 0;
+            for (int j = 0; j < datesUntilList.size() - 1 ; j++) {
+                cellPerson = rowPerson.createCell(j+2);
+
+                Consumation personCosumation = consumationRepository.findByDateAndPerson(datesUntilList.get(j),personRepository.findById(i+1));
+
+                if(personCosumation != null){
+                    if(personCosumation.isHasConsumed()){
+                        cellPerson.setCellValue("1");
+                        countMenu++;
+
+                        countMeal[j] += 1;
+
+
+                    }else{
+                        cellPerson.setCellValue("0");
+                    }
+
+                }else{
+                    cellPerson.setCellValue("kein Wert");
+                }
+            }
+
+            cellPerson = rowPerson.createCell(datesUntilList.size() + 1);
+            cellPerson.setCellValue(countMenu);
+            cellPerson = rowPerson.createCell(datesUntilList.size() + 2);
+            cellPerson.setCellValue(countMenu * preisMenu );
+        }
+
+
+        Row countMealRow = sheet.createRow(104);
+        Cell countMealCell = countMealRow.createCell(1);
+        countMealCell.setCellValue("Anzahl Essen");
+
+        for (int i = 0; i < datesUntilList.size()  - 1; i++) {
+            countMealCell = countMealRow.createCell(2+i);
+            countMealCell.setCellValue(countMeal[i]);
 
         }
 

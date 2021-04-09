@@ -23,6 +23,9 @@ public class InitBean {
     @Inject
     PersonRepository personRepository;
 
+    @Inject
+    ConsumationRepository consumationRepository;
+
     @Transactional
     public void startUp(@Observes StartupEvent startupEvent) {
 
@@ -36,6 +39,7 @@ public class InitBean {
         em.persist(brooke);
         em.persist(paula);
 
+        consumationRepository.readFromCsv();
 
         Consumation consumation1 = new Consumation(brooke, LocalDate.of(2021,1,8),true);
         Consumation consumation2 = new Consumation(brooke, LocalDate.of(2021,1,9),false);
