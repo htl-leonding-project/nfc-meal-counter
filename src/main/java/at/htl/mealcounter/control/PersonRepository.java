@@ -18,7 +18,6 @@ import java.util.stream.Stream;
 
 import static java.lang.System.out;
 
-
 @ApplicationScoped
 public class PersonRepository {
 
