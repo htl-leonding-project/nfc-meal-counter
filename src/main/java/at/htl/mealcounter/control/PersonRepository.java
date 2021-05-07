@@ -5,6 +5,7 @@ import at.htl.mealcounter.entity.Person;
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
+import javax.persistence.NoResultException;
 import javax.transaction.Transactional;
 import java.io.IOException;
 import java.net.URL;
@@ -16,7 +17,6 @@ import java.util.List;
 import java.util.stream.Stream;
 
 import static java.lang.System.out;
-
 
 @ApplicationScoped
 public class PersonRepository {
@@ -42,7 +42,6 @@ public class PersonRepository {
         em.remove(findById(id));
     }
 
-
     @Transactional
     public void readFromCsv() {
 
@@ -61,4 +60,10 @@ public class PersonRepository {
             e.printStackTrace();
         }
     }
+
+    public List<Person> findByClass(String classname) {
+        return em.createQuery("select p from Person p where p.className = :classname", Person.class)
+                .setParameter("classname", classname).getResultList();
+    }
+
 }
