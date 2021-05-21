@@ -63,7 +63,7 @@ image::03.jpeg[]
 == Schritte
 * arp -a
 ** mit dem Befehl haben wir die IP-Adresse herausgefunden
-* ssh pi@192.168.178.23 (IP-Adresse)
+* ssh pi@192.168.178.33 (IP-Adresse)
 ** mit diesem Befehl wird eine Verbindung hergestellt
 * Das Passwort für den Zugriff wäre: raspberry
 * sudo raspi-config
