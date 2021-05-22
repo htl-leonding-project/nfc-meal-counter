@@ -48,6 +48,7 @@ endif::backend-html5[]
 == Schritte
 * java -jar ~/lib/apdu4j.jar -v -l
 ** Reader anzeigen von Martin
+
 * mvn clean package
 ** SNAPSHOT.jar erstellen
 * java -jar apdu-demo-1.0-SNAPSHOT.ja
