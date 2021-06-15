@@ -3,8 +3,6 @@ package at.htl.mealcounter.boundary;
 
 import at.htl.mealcounter.control.ConsumationRepository;
 import at.htl.mealcounter.entity.Consumation;
-import org.glassfish.jersey.client.ClientConfig;
-import org.glassfish.jersey.filter.LoggingFilter;
 
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
