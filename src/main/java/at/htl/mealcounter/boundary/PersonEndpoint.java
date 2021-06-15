@@ -24,6 +24,7 @@ public class PersonEndpoint {
     PersonRepository personRepository;
 
     @GET
+    @Path("/findAll")
     @Produces(MediaType.APPLICATION_JSON)
     public Response findAll() {
         return Response.ok(personRepository.findAll()).build();
@@ -31,6 +32,7 @@ public class PersonEndpoint {
 
 
     @POST
+    @Path("/create")
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
     public Response create(Person person, @Context UriInfo info) {
