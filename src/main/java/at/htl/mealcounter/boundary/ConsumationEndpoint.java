@@ -3,12 +3,15 @@ package at.htl.mealcounter.boundary;
 
 import at.htl.mealcounter.control.ConsumationRepository;
 import at.htl.mealcounter.entity.Consumation;
+import org.glassfish.jersey.client.ClientConfig;
+import org.glassfish.jersey.filter.LoggingFilter;
 
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.ws.rs.*;
 import javax.ws.rs.client.Client;
 import javax.ws.rs.client.ClientBuilder;
+import javax.ws.rs.client.WebTarget;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
@@ -19,12 +22,11 @@ import java.net.URI;
 @Path("/consumation")
 public class ConsumationEndpoint {
 
-    Client client = ClientBuilder.newClient();
-
     @Inject
     ConsumationRepository consumationRepository;
 
     @GET
+    @Path("/findAll")
     @Produces(MediaType.APPLICATION_JSON)
     public Response findAll() {
         return Response.ok(consumationRepository.findAll()).build();
@@ -32,6 +34,7 @@ public class ConsumationEndpoint {
 
 
     @POST
+    @Path("/create")
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
     public Response create(Consumation consumation, @Context UriInfo info) {
