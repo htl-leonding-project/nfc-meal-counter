@@ -47,6 +47,14 @@ public class Person {
         this.className = className;
     }
 
+    public Person(String nfcId, String firstName, String lastName, int yearno, String className) {
+        this.nfcId = nfcId;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.yearno = yearno;
+        this.className = className;
+    }
+
     //region getter and setter
     public long getId() {
         return id;
