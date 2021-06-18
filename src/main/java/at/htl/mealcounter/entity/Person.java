@@ -11,7 +11,7 @@ import javax.persistence.*;
         ),
         @NamedQuery(
                 name = "Person.findByClass",
-                query = "select p from Person p where p.className = :classname"
+                query = "select p from Person p where p.currentClassName = :classname"
         )
 })
 
@@ -31,28 +31,28 @@ public class Person {
     @Column(name = "LAST_NAME")
     private String lastName;
 
-    @Column(name = "YEARNO")
-    private int yearno;
+    @Column(name = "ENTRY_YEAR")
+    private int entryYear;  // eintrittsjahr
 
     @Column(name = "CLASS_NAME")
-    private String className;
+    private String currentClassName;
 
     public Person() {
     }
 
-    public Person(String firstName, String lastName, int yearno, String className) {
+    public Person(String firstName, String lastName, int entryYear, String currentClassName) {
         this.firstName = firstName;
         this.lastName = lastName;
-        this.yearno = yearno;
-        this.className = className;
+        this.entryYear = entryYear;
+        this.currentClassName = currentClassName;
     }
 
-    public Person(String nfcId, String firstName, String lastName, int yearno, String className) {
+    public Person(String nfcId, String firstName, String lastName, int entryYear, String currentClassName) {
         this.nfcId = nfcId;
         this.firstName = firstName;
         this.lastName = lastName;
-        this.yearno = yearno;
-        this.className = className;
+        this.entryYear = entryYear;
+        this.currentClassName = currentClassName;
     }
 
     //region getter and setter
@@ -88,20 +88,20 @@ public class Person {
         this.lastName = lastName;
     }
 
-    public int getYearno() {
-        return yearno;
+    public int getentryYear() {
+        return entryYear;
     }
 
-    public void setYearno(int yearno) {
-        this.yearno = yearno;
+    public void setentryYear(int entryYear) {
+        this.entryYear = entryYear;
     }
 
-    public String getClassName() {
-        return className;
+    public String getCurrentClassName() {
+        return currentClassName;
     }
 
-    public void setClassName(String className) {
-        this.className = className;
+    public void setCurrentClassName(String className) {
+        this.currentClassName = className;
     }
     //endregion
 
@@ -113,8 +113,8 @@ public class Person {
                 ", nfcId='" + nfcId + '\'' +
                 ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
-                ", year=" + yearno +
-                ", className='" + className + '\'' +
+                ", entryYear=" + entryYear +
+                ", className='" + currentClassName + '\'' +
                 '}';
     }
 }
