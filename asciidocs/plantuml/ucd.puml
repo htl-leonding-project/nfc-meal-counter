@@ -1,13 +1,17 @@
 @startuml
 left to right direction
         actor Person
+        actor Admin
 
         rectangle {
 
-        Person -- (Ein Schüler holt sich ein Essen)
-        (Ein Schüler holt sich ein Essen) -- (Ein 2. Essen wird dem Schüler verweigert)
-        Person -- (Monatlicher Exel-Export wird durchgeführt)
-        Person -- (Für jeden Schüler wird eine Essensrechnung erstellt)
+        Person -- (bucht Essen)
+        Admin -- (Person vom System abmelden)
+        (Person vom System abmelden) .> (sämtliche Geschäftsfälle abschließen) :include
+        Admin -- (Excel-Export durchführen)
+        Admin -- (Karte im System registrieren)
+        Admin -- (Karte einer Person zuweisen)
+        Admin --|> Person
 
         }
 @enduml
