@@ -61,9 +61,9 @@ public class PersonRepository {
         }
     }
 
-    public List<Person> findByClass(String classname) {
-        return em.createQuery("select p from Person p where p.className = :classname", Person.class)
-                .setParameter("classname", classname).getResultList();
+    public List<Person> findByClass(String currentClassName) {
+        return em.createQuery("select p from Person p where p.currentClassName = :currentClassName", Person.class)
+                .setParameter("currentClassName", currentClassName).getResultList();
     }
 
 }
