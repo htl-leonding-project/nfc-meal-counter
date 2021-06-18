@@ -1,0 +1,13 @@
+@startuml
+left to right direction
+        actor Person
+
+        rectangle {
+
+        Person -- (Ein Schüler holt sich ein Essen)
+        (Ein Schüler holt sich ein Essen) -- (Ein 2. Essen wird dem Schüler verweigert)
+        Person -- (Monatlicher Exel-Export wird durchgeführt)
+        Person -- (Für jeden Schüler wird eine Essensrechnung erstellt)
+
+        }
+@enduml
