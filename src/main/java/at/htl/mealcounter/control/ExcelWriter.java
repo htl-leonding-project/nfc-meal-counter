@@ -8,16 +8,11 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
-import javax.persistence.EntityManager;
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.lang.reflect.Array;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
-import java.time.Month;
-import java.time.format.DateTimeFormatter;
 import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -76,7 +71,7 @@ public class ExcelWriter {
         cell.setCellValue("Klasse: ");
 
         cell = row.createCell(1);
-        String classname = personRepository.findById(1).getClassName();
+        String classname = personRepository.findById(1).getCurrentClassName();
         cell.setCellValue(classname);
 
         // Preis
