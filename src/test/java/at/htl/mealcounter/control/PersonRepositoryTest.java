@@ -1,6 +1,5 @@
 package at.htl.mealcounter.control;
 
-import at.htl.mealcounter.entity.Consumation;
 import at.htl.mealcounter.entity.Person;
 import io.quarkus.test.junit.QuarkusTest;
 import org.assertj.db.api.Assertions;
@@ -12,12 +11,8 @@ import org.junit.jupiter.api.Test;
 import javax.inject.Inject;
 
 import javax.sql.DataSource;
-import javax.transaction.Transactional;
-import java.time.LocalDate;
-import java.util.List;
 
 import static org.assertj.db.output.Outputs.output;
-import static org.junit.jupiter.api.Assertions.*;
 
 
 @QuarkusTest
@@ -46,8 +41,8 @@ class PersonRepositoryTest {
         Assertions.assertThat(table).row(2)
                 .value("FIRST_NAME").isEqualTo(person.getFirstName())
                 .value("LAST_NAME").isEqualTo(person.getLastName())
-                .value("YEARNO").isEqualTo(person.getYearno())
-                .value("CLASS_NAME").isEqualTo(person.getClassName());
+                .value("ENTRY_YEAR").isEqualTo(person.getentryYear())
+                .value("CLASS_NAME").isEqualTo(person.getCurrentClassName());
     }
 
 
@@ -99,8 +94,8 @@ class PersonRepositoryTest {
         Assertions.assertThat(table).row((int) (person.getId()-1))
                 .value("FIRST_NAME").isEqualTo(person.getFirstName())
                 .value("LAST_NAME").isEqualTo(person.getLastName())
-                .value("YEARNO").isEqualTo(person.getYearno())
-                .value("CLASS_NAME").isEqualTo(person.getClassName());
+                .value("ENTRY_YEAR").isEqualTo(person.getentryYear())
+                .value("CLASS_NAME").isEqualTo(person.getCurrentClassName());
 
 
     }
