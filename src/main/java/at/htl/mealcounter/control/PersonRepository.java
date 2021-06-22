@@ -1,6 +1,7 @@
 package at.htl.mealcounter.control;
 
 import at.htl.mealcounter.entity.Person;
+import io.quarkus.hibernate.orm.panache.PanacheRepository;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
@@ -19,28 +20,10 @@ import java.util.stream.Stream;
 import static java.lang.System.out;
 
 @ApplicationScoped
-public class PersonRepository {
+public class PersonRepository implements PanacheRepository<Person> {
 
     @Inject
     EntityManager em;
-
-    public Person findById(long id) {
-       return em.find(Person.class,id);
-    }
-
-    public List<Person> findAll() {
-        return em.createNamedQuery("Person.findAll", Person.class).getResultList();
-    }
-
-    @Transactional
-    public Person save(Person person) {
-        return em.merge(person);
-    }
-
-    @Transactional
-    public void delete(long id) {
-        em.remove(findById(id));
-    }
 
     @Transactional
     public void readFromCsv() {
@@ -55,7 +38,7 @@ public class PersonRepository {
                             Integer.parseInt(String.valueOf(LocalDate.now().getYear())),
                             a[0]))
                     .peek(out::println)
-                    .forEach(em::merge);// was heißt das
+                    .forEach(em::merge);
         } catch (IOException e) {
             e.printStackTrace();
         }

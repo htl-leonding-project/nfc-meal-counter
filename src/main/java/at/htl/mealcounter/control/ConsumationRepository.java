@@ -2,6 +2,7 @@ package at.htl.mealcounter.control;
 
 import at.htl.mealcounter.entity.Consumation;
 import at.htl.mealcounter.entity.Person;
+import io.quarkus.hibernate.orm.panache.PanacheRepository;
 import org.eclipse.microprofile.config.inject.ConfigProperty;
 
 import javax.enterprise.context.ApplicationScoped;
@@ -27,31 +28,13 @@ import static java.lang.System.out;
 
 
 @ApplicationScoped
-public class ConsumationRepository {
+public class ConsumationRepository implements PanacheRepository<Consumation> {
 
     @Inject
     EntityManager em;
 
     @Inject
     PersonRepository personRepository;
-
-    public Consumation findById(long id) {
-        return em.find(Consumation.class,id);
-    }
-
-    public List<Consumation> findAll() {
-        return em.createNamedQuery("Consumation.findAll", Consumation.class).getResultList();
-    }
-
-    @Transactional
-    public Consumation save(Consumation consumation) {
-        return em.merge(consumation);
-    }
-
-    @Transactional
-    public void delete(long id) {
-        em.remove(findById(id));
-    }
 
 
     public Consumation findByDateAndPerson(LocalDate myDate, Person person) {
