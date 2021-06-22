@@ -1,29 +1,24 @@
 package at.htl.mealcounter.entity;
-
 import javax.persistence.*;
+import at.htl.mealcounter.entity.NfcCard;
+import io.quarkus.hibernate.orm.panache.PanacheEntity;
+
 
 @Entity
 @Table(name = "M_PERSON")
-@NamedQueries({
-        @NamedQuery(
-                name = "Person.findAll",
-                query = "select p from Person p"
-        ),
-        @NamedQuery(
-                name = "Person.findByClass",
-                query = "select p from Person p where p.currentClassName = :classname"
-        )
-})
 
-public class Person {
+public class Person extends PanacheEntity {
 
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
     @Column(name = "ID")
     private Long id;
 
-    @Column(name = "NFC_ID")
-    private String nfcId;
+    @ManyToOne
+    NfcCard nfcCard;
+
+    @ManyToOne
+    Consumation consumation;
 
     @Column(name = "FIRST_NAME")
     private String firstName;
@@ -47,8 +42,8 @@ public class Person {
         this.currentClassName = currentClassName;
     }
 
-    public Person(String nfcId, String firstName, String lastName, int entryYear, String currentClassName) {
-        this.nfcId = nfcId;
+    public Person(NfcCard nfcCard, String firstName, String lastName, int entryYear, String currentClassName) {
+        this.nfcCard = nfcCard;
         this.firstName = firstName;
         this.lastName = lastName;
         this.entryYear = entryYear;
@@ -64,12 +59,12 @@ public class Person {
         this.id = id;
     }
 
-    public String getNfcId() {
-        return nfcId;
+    public NfcCard getNfcCard() {
+        return nfcCard;
     }
 
-    public void setNfcId(String nfcId) {
-        this.nfcId = nfcId;
+    public void setNfcCard(NfcCard nfcCard) {
+        this.nfcCard = nfcCard;
     }
 
     public String getFirstName() {
@@ -110,7 +105,7 @@ public class Person {
     public String toString() {
         return "Person{" +
                 "id=" + id +
-                ", nfcId='" + nfcId + '\'' +
+                ", nfcCard='" + nfcCard + '\'' +
                 ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
                 ", entryYear=" + entryYear +

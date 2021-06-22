@@ -1,18 +1,15 @@
 package at.htl.mealcounter.entity;
 
+import io.quarkus.hibernate.orm.panache.PanacheEntity;
+import io.quarkus.hibernate.orm.panache.PanacheEntityBase;
+
 import javax.persistence.*;
 import java.time.LocalDate;
 
 @Entity
 @Table(name = "M_CONSUMATION")
-@NamedQueries({
-        @NamedQuery(
-                name = "Consumation.findAll",
-                query = "select c from Consumation c"
-        )
-})
 
-public class Consumation {
+public class Consumation extends PanacheEntity {
 
 
     @Id
