@@ -32,8 +32,8 @@ class PersonRepositoryTest {
     @Order(1)
     void save() {
 
-        Person person = new Person("Michelle", "Obama", 2021, "4a");
-        personRepository.save(person);
+        Person person =  personRepository.findById(Long.valueOf(99));
+        personRepository.persist(person);
 
         Table table = new Table(dataSource, DatabaseHelper.PERSON_TABLE);
         output(table).toConsole();
@@ -41,8 +41,7 @@ class PersonRepositoryTest {
         Assertions.assertThat(table).row(2)
                 .value("FIRST_NAME").isEqualTo(person.getFirstName())
                 .value("LAST_NAME").isEqualTo(person.getLastName())
-                .value("ENTRY_YEAR").isEqualTo(person.getentryYear())
-                .value("CLASS_NAME").isEqualTo(person.getCurrentClassName());
+                .value("ENTRY_YEAR").isEqualTo(person.getentryYear());
     }
 
 
@@ -50,14 +49,14 @@ class PersonRepositoryTest {
     @Order(2)
     void delete() {
 
-        Person person = new Person("Michelle", "Obama", 2021, "4a");
-        person = personRepository.save(person);
+        Person person =  personRepository.findById(Long.valueOf(99));
+        personRepository.persist(person);
 
         Table table = new Table(dataSource, DatabaseHelper.PERSON_TABLE);
         output(table).toConsole();
 
         int rowsBefore = table.getRowsList().size();
-        personRepository.delete(person.getId());
+        personRepository.delete(person);
         table = new Table(dataSource, DatabaseHelper.PERSON_TABLE);
         output(table).toConsole();
         int rowsAfter = table.getRowsList().size();
@@ -71,7 +70,7 @@ class PersonRepositoryTest {
     void findAll() {
 
 
-        int findAllRows = personRepository.findAll().size();
+        int findAllRows = personRepository.listAll().size();
 
         Table table = new Table(dataSource, DatabaseHelper.PERSON_TABLE);
 
@@ -88,28 +87,14 @@ class PersonRepositoryTest {
 
         Table table = new Table(dataSource, DatabaseHelper.PERSON_TABLE);
 
-        Person person = personRepository.findById(2);
+        Person person = personRepository.findById(Long.valueOf(2));
 
 
         Assertions.assertThat(table).row((int) (person.getId()-1))
                 .value("FIRST_NAME").isEqualTo(person.getFirstName())
                 .value("LAST_NAME").isEqualTo(person.getLastName())
-                .value("ENTRY_YEAR").isEqualTo(person.getentryYear())
-                .value("CLASS_NAME").isEqualTo(person.getCurrentClassName());
+                .value("ENTRY_YEAR").isEqualTo(person.getentryYear());
 
-
-    }
-
-    @Test
-    @Order(6)
-    void t200_findByClass() {
-
-        Table table = new Table(dataSource, DatabaseHelper.PERSON_TABLE);
-        output(table).toConsole();
-
-        int classSize = personRepository.findByClass("1a").size();
-
-        org.assertj.core.api.Assertions.assertThat(classSize).isEqualTo(21);
     }
 
 }
