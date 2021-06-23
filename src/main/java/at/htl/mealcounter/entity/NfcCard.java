@@ -8,6 +8,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.Objects;
 
 @Entity
 @Table(name = "M_NFC_CARD")
@@ -27,6 +28,7 @@ public class NfcCard extends PanacheEntity {
     public NfcCard() {
 
     }
+
 
     public NfcCard(LocalDateTime registerDateTime) {
         this.registerDateTime = registerDateTime;
@@ -48,5 +50,16 @@ public class NfcCard extends PanacheEntity {
         this.registerDateTime = registerDateTime;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        NfcCard nfcCard = (NfcCard) o;
+        return Objects.equals(nfcId, nfcCard.nfcId) && Objects.equals(registerDateTime, nfcCard.registerDateTime);
+    }
 
+    @Override
+    public int hashCode() {
+        return Objects.hash(nfcId, registerDateTime);
+    }
 }
