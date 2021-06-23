@@ -2,13 +2,14 @@ package at.htl.mealcounter.entity;
 import javax.persistence.*;
 import at.htl.mealcounter.entity.NfcCard;
 import io.quarkus.hibernate.orm.panache.PanacheEntity;
+import io.quarkus.hibernate.orm.panache.PanacheEntityBase;
 
 import java.util.Objects;
 
 
 @Entity
 @Table(name = "M_PERSON")
-public class Person extends PanacheEntity {
+public class Person extends PanacheEntityBase {
 
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
@@ -16,7 +17,7 @@ public class Person extends PanacheEntity {
     private Long id;
 
     @ManyToOne(cascade = {CascadeType.PERSIST,CascadeType.MERGE,CascadeType.REMOVE})
-    @Column(name = "NFC_CARD")
+    @JoinColumn(name = "NFC_CARD")
     NfcCard nfcCard;
 
     @Column(name = "FIRST_NAME")

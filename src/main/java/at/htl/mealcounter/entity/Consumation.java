@@ -9,7 +9,7 @@ import java.time.LocalDate;
 @Entity
 @Table(name = "M_CONSUMATION")
 
-public class Consumation extends PanacheEntity {
+public class Consumation extends PanacheEntityBase {
 
 
     @Id

@@ -1,6 +1,7 @@
 package at.htl.mealcounter.entity;
 
 import io.quarkus.hibernate.orm.panache.PanacheEntity;
+import io.quarkus.hibernate.orm.panache.PanacheEntityBase;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -12,7 +13,7 @@ import java.util.Objects;
 
 @Entity
 @Table(name = "M_NFC_CARD")
-public class NfcCard extends PanacheEntity {
+public class NfcCard extends PanacheEntityBase {
 
     @Id
     @Column(name = "NFC_ID")
