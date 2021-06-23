@@ -3,6 +3,8 @@ import javax.persistence.*;
 import at.htl.mealcounter.entity.NfcCard;
 import io.quarkus.hibernate.orm.panache.PanacheEntity;
 
+import java.util.Objects;
+
 
 @Entity
 @Table(name = "M_PERSON")
@@ -29,25 +31,20 @@ public class Person extends PanacheEntity {
     @Column(name = "ENTRY_YEAR")
     private int entryYear;  // eintrittsjahr
 
-    @Column(name = "CLASS_NAME")
-    private String currentClassName;
-
     public Person() {
     }
 
-    public Person(String firstName, String lastName, int entryYear, String currentClassName) {
+    public Person(String firstName, String lastName, int entryYear,) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.entryYear = entryYear;
-        this.currentClassName = currentClassName;
     }
 
-    public Person(NfcCard nfcCard, String firstName, String lastName, int entryYear, String currentClassName) {
+    public Person(NfcCard nfcCard, String firstName, String lastName, int entryYear) {
         this.nfcCard = nfcCard;
         this.firstName = firstName;
         this.lastName = lastName;
         this.entryYear = entryYear;
-        this.currentClassName = currentClassName;
     }
 
     //region getter and setter
@@ -91,25 +88,18 @@ public class Person extends PanacheEntity {
         this.entryYear = entryYear;
     }
 
-    public String getCurrentClassName() {
-        return currentClassName;
-    }
-
-    public void setCurrentClassName(String className) {
-        this.currentClassName = className;
-    }
     //endregion
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Person person = (Person) o;
+        return entryYear == person.entryYear && Objects.equals(id, person.id) && Objects.equals(nfcCard, person.nfcCard) && Objects.equals(consumation, person.consumation) && Objects.equals(firstName, person.firstName) && Objects.equals(lastName, person.lastName);
+    }
 
     @Override
-    public String toString() {
-        return "Person{" +
-                "id=" + id +
-                ", nfcCard='" + nfcCard + '\'' +
-                ", firstName='" + firstName + '\'' +
-                ", lastName='" + lastName + '\'' +
-                ", entryYear=" + entryYear +
-                ", className='" + currentClassName + '\'' +
-                '}';
+    public int hashCode() {
+        return Objects.hash(id, nfcCard, consumation, firstName, lastName, entryYear);
     }
 }
