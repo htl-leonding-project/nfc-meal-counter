@@ -26,9 +26,8 @@ public class PersonRepository implements PanacheRepository<Person> {
     @Inject
     EntityManager em;
 
-    @Transactional
+/*    @Transactional
     public void readFromCsv() {
-
         URL url = Thread.currentThread().getContextClassLoader().getResource("names.csv");
         try (Stream<String> stream = Files.lines(Paths.get(url.getPath()), StandardCharsets.UTF_8)) {
             stream.skip(1)
@@ -43,12 +42,7 @@ public class PersonRepository implements PanacheRepository<Person> {
         } catch (IOException e) {
             e.printStackTrace();
         }
-    }
-
-    public List<Person> findByClass(String currentClassName) {
-        return em.createQuery("select p from Person p where p.currentClassName = :currentClassName", Person.class)
-                .setParameter("currentClassName", currentClassName).getResultList();
-    }
+    }*/
 
     public List<NfcCard> findById(String nfcId) {
         return null;
