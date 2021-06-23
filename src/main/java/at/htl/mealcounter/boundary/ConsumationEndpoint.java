@@ -6,6 +6,7 @@ import at.htl.mealcounter.entity.Consumation;
 
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
+import javax.transaction.Transactional;
 import javax.ws.rs.*;
 import javax.ws.rs.client.Client;
 import javax.ws.rs.client.ClientBuilder;
@@ -33,6 +34,7 @@ public class ConsumationEndpoint {
 
     @POST
     @Path("/create")
+    @Transactional
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
     public Response create(Consumation consumation, @Context UriInfo info) {
@@ -52,21 +54,18 @@ public class ConsumationEndpoint {
     @Path("{id}")
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
-    public Response delete(@PathParam("id")Consumation consumation) {
+    @Transactional
+    public Response delete(@PathParam("id") Long id) {
         try {
-            consumationRepository.delete(consumation);
+            consumationRepository.deleteById(id);
             return Response
                     .noContent()
                     .build();
         } catch (IllegalArgumentException e) {
             return Response
                     .status(400)
-                    .header("Reason","Consumation with id" + consumation.getId()  + "does not exist")
+                    .header("Reason","Consumation with id" +id  + "does not exist")
                     .build();
         }
     }
-
-
-
-
 }
