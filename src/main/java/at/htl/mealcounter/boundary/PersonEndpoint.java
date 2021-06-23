@@ -8,6 +8,7 @@ import at.htl.mealcounter.entity.Person;
 
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
+import javax.transaction.Transactional;
 import javax.ws.rs.*;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
@@ -34,6 +35,7 @@ public class PersonEndpoint {
     @Path("/nfc")
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
+    @Transactional
     public Response nfcCardDeteteced(NfcCard data, @Context UriInfo info) {
         System.out.println("Data" + data);
         return Response.ok().build(); //(URI.create(info.getPath() + "/"+ data.nfcId)).build();
@@ -57,16 +59,17 @@ public class PersonEndpoint {
     @Path("{id}")
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
-    public Response delete(@PathParam("id") Person person) {
+    @Transactional
+    public Response delete(@PathParam("id") Long id) {
         try {
-            personRepository.delete(person);
+            personRepository.deleteById(id);
             return Response
                     .noContent()
                     .build();
         } catch (IllegalArgumentException e) {
             return Response
                     .status(400)
-                    .header("Reason","Person with id" + person.getId()  + "does not exist")
+                    .header("Reason","Person with id" + id + "does not exist")
                     .build();
         }
     }
