@@ -42,11 +42,11 @@ class ConsumationRepositoryTest {
     @Order(1)
     void save() {
 
-        Person person = new Person("Michelle", "Obama", 2021, "4a");
+        Person person = new Person("Bradford", "Fair",2010);
 
         Consumation consumation = new Consumation(person, LocalDate.of(2021,1,8),true);
 
-        consumation = consumationRepository.save(consumation);
+        consumationRepository.persist(consumation);
 
         Table table = new Table(dataSource, DatabaseHelper.CONSUMATION_TABLE);
         output(table).toConsole();
@@ -61,17 +61,17 @@ class ConsumationRepositoryTest {
     @Order(2)
     void delete() {
 
-        Person person = new Person("Michelle", "Obama", 2021, "4a");
+        Person person = new Person("Bradford", "Fair",2010);
 
         Consumation consumation = new Consumation(person, LocalDate.of(2021,1,8),true);
 
-        consumation = consumationRepository.save(consumation);
+        consumationRepository.persist(consumation);
 
         Table table = new Table(dataSource, DatabaseHelper.CONSUMATION_TABLE);
         output(table).toConsole();
 
         int rowsBefore = table.getRowsList().size();
-        consumationRepository.delete(consumation.getId());
+        consumationRepository.delete(consumation);
         table = new Table(dataSource, DatabaseHelper.CONSUMATION_TABLE);
         output(table).toConsole();
         int rowsAfter = table.getRowsList().size();
@@ -85,7 +85,7 @@ class ConsumationRepositoryTest {
     void findAll() {
 
 
-        int findAllRows = consumationRepository.findAll().size();
+        int findAllRows = consumationRepository.listAll().size();
 
         Table table = new Table(dataSource, DatabaseHelper.CONSUMATION_TABLE);
 
@@ -119,8 +119,7 @@ class ConsumationRepositoryTest {
 
         LocalDate date = LocalDate.of(2021,1,8);
 
-        Person person =  personRepository.findById(99);
-
+        Person person =  personRepository.findById(Long.valueOf(99));
 
         Consumation findConsumation = consumationRepository.findByDateAndPerson(date,person);
 
@@ -133,9 +132,5 @@ class ConsumationRepositoryTest {
                 .value("DATE").isEqualTo(date)
                 .value("PERSON_ID").isEqualTo(99);
 
-
-
     }
-
-
 }
