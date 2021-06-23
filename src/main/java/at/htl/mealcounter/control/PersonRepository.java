@@ -26,26 +26,31 @@ public class PersonRepository implements PanacheRepository<Person> {
     @Inject
     EntityManager em;
 
-/*    @Transactional
-    public void readFromCsv() {
-        URL url = Thread.currentThread().getContextClassLoader().getResource("names.csv");
-        try (Stream<String> stream = Files.lines(Paths.get(url.getPath()), StandardCharsets.UTF_8)) {
-            stream.skip(1)
-                    .map(s -> s.split(";"))
-                    .map(a -> new Person(
-                            a[1],
-                            a[2],
-                            Integer.parseInt(String.valueOf(LocalDate.now().getYear())),
-                            a[0]))
-                    .peek(out::println)
-                    .forEach(em::merge);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }*/
+//    @Transactional
+//    public void readFromCsv() {
+//
+//        URL url = Thread.currentThread().getContextClassLoader().getResource("names.csv");
+//        try (Stream<String> stream = Files.lines(Paths.get(url.getPath()), StandardCharsets.UTF_8)) {
+//            stream.skip(1)
+//                    .map(s -> s.split(";"))
+//                    .map(a -> new Person(
+//                            a[1],
+//                            a[2],
+//                            Integer.parseInt(String.valueOf(LocalDate.now().getYear())),
+//                            a[0]))
+//                    .peek(out::println)
+//                    .forEach(em::merge);
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
+//    }
+
+
+
 
     public List<NfcCard> findById(String nfcId) {
-        return null;
+        return em.createQuery("select n from NfcCard n where n.nfcId = :nfcId", NfcCard.class)
+                .setParameter("nfcId", nfcId).getResultList();
     }
 
 }
