@@ -1,5 +1,6 @@
 package at.htl.mealcounter.control;
 
+import at.htl.mealcounter.entity.NfcCard;
 import at.htl.mealcounter.entity.Person;
 import io.quarkus.hibernate.orm.panache.PanacheRepository;
 
@@ -47,6 +48,10 @@ public class PersonRepository implements PanacheRepository<Person> {
     public List<Person> findByClass(String currentClassName) {
         return em.createQuery("select p from Person p where p.currentClassName = :currentClassName", Person.class)
                 .setParameter("currentClassName", currentClassName).getResultList();
+    }
+
+    public List<NfcCard> findById(String nfcId) {
+        return null;
     }
 
 }
