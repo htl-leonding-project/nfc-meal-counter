@@ -8,7 +8,6 @@ import java.util.Objects;
 
 @Entity
 @Table(name = "M_PERSON")
-
 public class Person extends PanacheEntity {
 
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -16,11 +15,9 @@ public class Person extends PanacheEntity {
     @Column(name = "ID")
     private Long id;
 
-    @ManyToOne
+    @ManyToOne(cascade = {CascadeType.PERSIST,CascadeType.MERGE,CascadeType.REMOVE})
+    @Column(name = "NFC_CARD")
     NfcCard nfcCard;
-
-    @ManyToOne
-    Consumation consumation;
 
     @Column(name = "FIRST_NAME")
     private String firstName;
@@ -34,7 +31,7 @@ public class Person extends PanacheEntity {
     public Person() {
     }
 
-    public Person(String firstName, String lastName, int entryYear,) {
+    public Person(String firstName, String lastName, int entryYear) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.entryYear = entryYear;
@@ -90,16 +87,17 @@ public class Person extends PanacheEntity {
 
     //endregion
 
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Person person = (Person) o;
-        return entryYear == person.entryYear && Objects.equals(id, person.id) && Objects.equals(nfcCard, person.nfcCard) && Objects.equals(consumation, person.consumation) && Objects.equals(firstName, person.firstName) && Objects.equals(lastName, person.lastName);
+        return entryYear == person.entryYear && Objects.equals(id, person.id) && Objects.equals(nfcCard, person.nfcCard) && Objects.equals(firstName, person.firstName) && Objects.equals(lastName, person.lastName);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, nfcCard, consumation, firstName, lastName, entryYear);
+        return Objects.hash(id, nfcCard, firstName, lastName, entryYear);
     }
 }
