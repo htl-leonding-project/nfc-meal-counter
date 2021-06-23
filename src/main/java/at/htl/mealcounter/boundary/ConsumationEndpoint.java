@@ -36,10 +36,8 @@ public class ConsumationEndpoint {
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
     public Response create(Consumation consumation, @Context UriInfo info) {
-
-        consumation = consumationRepository.save(consumation);
+        consumationRepository.persist(consumation);
         return Response.created(URI.create(info.getPath() + "/"+ consumation.getId())).build();
-
     }
 
     @GET
