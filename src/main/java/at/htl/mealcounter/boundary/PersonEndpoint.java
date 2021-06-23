@@ -2,7 +2,9 @@ package at.htl.mealcounter.boundary;
 
 
 import at.htl.mealcounter.control.PersonRepository;
+import at.htl.mealcounter.entity.Consumation;
 import at.htl.mealcounter.entity.NfcCard;
+import at.htl.mealcounter.entity.Person;
 
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
@@ -49,6 +51,24 @@ public class PersonEndpoint {
     public Response findById(@PathParam("id") long id) {
         return Response.ok( personRepository.findById(id)).build();
 
+    }
+
+    @DELETE
+    @Path("{id}")
+    @Produces(MediaType.APPLICATION_JSON)
+    @Consumes(MediaType.APPLICATION_JSON)
+    public Response delete(@PathParam("id") Person person) {
+        try {
+            personRepository.delete(person);
+            return Response
+                    .noContent()
+                    .build();
+        } catch (IllegalArgumentException e) {
+            return Response
+                    .status(400)
+                    .header("Reason","Person with id" + person.getId()  + "does not exist")
+                    .build();
+        }
     }
 
 

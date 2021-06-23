@@ -48,6 +48,25 @@ public class ConsumationEndpoint {
         return Response.ok( consumationRepository.findById(id)).build();
     }
 
+    @DELETE
+    @Path("{id}")
+    @Produces(MediaType.APPLICATION_JSON)
+    @Consumes(MediaType.APPLICATION_JSON)
+    public Response delete(@PathParam("id")Consumation consumation) {
+        try {
+            consumationRepository.delete(consumation);
+            return Response
+                    .noContent()
+                    .build();
+        } catch (IllegalArgumentException e) {
+            return Response
+                    .status(400)
+                    .header("Reason","Consumation with id" + consumation.getId()  + "does not exist")
+                    .build();
+        }
+    }
+
+
 
 
 }
