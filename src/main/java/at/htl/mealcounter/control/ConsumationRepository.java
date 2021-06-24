@@ -1,6 +1,7 @@
 package at.htl.mealcounter.control;
 
 import at.htl.mealcounter.entity.Consumation;
+import at.htl.mealcounter.entity.NfcCard;
 import at.htl.mealcounter.entity.Person;
 import io.quarkus.hibernate.orm.panache.PanacheRepository;
 import org.eclipse.microprofile.config.inject.ConfigProperty;
@@ -73,6 +74,9 @@ public class ConsumationRepository implements PanacheRepository<Consumation> {
             e.printStackTrace();
         }
     }
+
+
+
 
 
 }
