@@ -53,6 +53,4 @@ public class PersonRepository implements PanacheRepository<Person> {
                 .setParameter("nfcId", nfcId).getResultList();
     }
 
-    public
-
 }
