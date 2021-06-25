@@ -23,6 +23,11 @@ public class PersonEndpoint {
     @Inject
     PersonRepository personRepository;
 
+
+    @Inject
+    NfcCard nfcCard;
+
+
     @GET
     @Path("/findAll")
     @Produces(MediaType.APPLICATION_JSON)
@@ -52,6 +57,15 @@ public class PersonEndpoint {
     @Consumes(MediaType.APPLICATION_JSON)
     public Response findById(@PathParam("id") long id) {
         return Response.ok( personRepository.findById(id)).build();
+
+    }
+
+    @GET
+    @Path("/{id}")
+    @Produces(MediaType.APPLICATION_JSON)
+    @Consumes(MediaType.APPLICATION_JSON)
+    public Response findByNfcId(@PathParam("id") long id) {
+        return Response.ok( personRepository.findById(nfcCard.nfcId)).build();
 
     }
 
