@@ -4,4 +4,5 @@ public class NFCEndpoint {
     public String nfcId;
 
 
+
 }
