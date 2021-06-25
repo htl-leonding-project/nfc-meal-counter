@@ -52,4 +52,9 @@ public class PersonRepository implements PanacheRepository<Person> {
                 .setParameter("nfcId", nfcId).getResultList();
     }
 
+
+    public List<Person> findByEntryYear(int entryYear){
+        return em.createQuery("select p from Person p where p.entryYear = :entryYear",Person.class)
+                .setParameter("entryYear",entryYear).getResultList();
+    }
 }
