@@ -92,12 +92,25 @@ class PersonRepositoryTest {
         Person person = personRepository.findById(Long.valueOf(2));
 
 
-        Assertions.assertThat(table).row((int) (person.getId()-1))
-                .value("FIRST_NAME").isEqualTo(person.getFirstName())
-                .value("LAST_NAME").isEqualTo(person.getLastName())
-                .value("ENTRY_YEAR").isEqualTo(person.getentryYear());
+        Assertions.assertThat(table).row((int) (person.getId()-1));
 
     }
+
+//    @Test
+//    @Order(5)
+//    void findByNfcId() {
+//
+//        Table table = new Table(dataSource, DatabaseHelper.PERSON_TABLE);
+//
+//        Person person = personRepository.findByNfcId("")
+//
+//
+//        Assertions.assertThat(table).row((int) (person.getId()-1))
+//                .value("FIRST_NAME").isEqualTo(person.getFirstName())
+//                .value("LAST_NAME").isEqualTo(person.getLastName())
+//                .value("ENTRY_YEAR").isEqualTo(person.getentryYear());
+//
+//    }
 
     @Test
     @Order(6)

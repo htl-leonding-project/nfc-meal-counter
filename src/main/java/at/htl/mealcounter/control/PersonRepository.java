@@ -44,13 +44,11 @@ public class PersonRepository implements PanacheRepository<Person> {
         }
     }
 
-
-
-
-    public List<Person> findById(String nfcId) {
-        return em.createQuery("select p from Person p where p.nfcCard.nfcId = :nfcId", Person.class)
-                .setParameter("nfcId", nfcId).getResultList();
-    }
+//
+//    public Person findByPersonId (long id) {
+//        return em.createQuery("select p from Person p where p.id = :id", Person.class)
+//
+//    }
 
 
     public List<Person> findByEntryYear(int entryYear){
