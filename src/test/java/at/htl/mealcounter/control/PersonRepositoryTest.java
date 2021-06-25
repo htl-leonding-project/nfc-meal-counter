@@ -12,6 +12,8 @@ import javax.inject.Inject;
 
 import javax.sql.DataSource;
 
+import java.util.List;
+
 import static org.assertj.db.output.Outputs.output;
 
 
@@ -96,5 +98,18 @@ class PersonRepositoryTest {
                 .value("ENTRY_YEAR").isEqualTo(person.getentryYear());
 
     }
+
+    @Test
+    @Order(6)
+    void findByEntryYear() {
+
+        Table table = new Table(dataSource, DatabaseHelper.PERSON_TABLE);
+
+        int personRepositoryByEntryYear = personRepository.findByEntryYear(2016).size();
+
+
+        org.assertj.core.api.Assertions.assertThat(personRepositoryByEntryYear).isEqualTo(18);
+    }
+
 
 }
