@@ -58,5 +58,5 @@ Derzeit umfasst die Schüleranzahl rund 65 SchülerInnen
 
 [plantuml,ucd]
 ----
-include::plantuml/ucd.puml[]
+include::../asciidocs/plantuml/ucd.puml[]
 ----

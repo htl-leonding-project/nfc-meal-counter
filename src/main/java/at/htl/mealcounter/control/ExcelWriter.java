@@ -32,7 +32,7 @@ public class ExcelWriter {
 
     public void writeExcel() throws IOException {
 
-        Person person = personRepository.findById(1);
+        Person person = personRepository.findById(1L);
 
         System.out.println(person.toString());
 
@@ -71,7 +71,7 @@ public class ExcelWriter {
         cell.setCellValue("Klasse: ");
 
         cell = row.createCell(1);
-        String classname = personRepository.findById(1).getCurrentClassName();
+        String classname = "klasse";
         cell.setCellValue(classname);
 
         // Preis
@@ -121,20 +121,20 @@ public class ExcelWriter {
         Row rowPerson;
         Cell cellPerson;
         int countMenu;
-        int[] countMeal = new int[personRepository.findAll().size()];
+        int[] countMeal = new int[personRepository.findAll().list().size()];
 
-        for (int i = 0; i < personRepository.findAll().size(); i++) {
+        for (int i = 0; i < personRepository.findAll().list().size(); i++) {
             rowPerson = sheet.createRow(i + 4);
             cellPerson = rowPerson.createCell(0);
-            cellPerson.setCellValue(personRepository.findById(i+1).getFirstName());
+            cellPerson.setCellValue(personRepository.findById((long)i+1).getFirstName());
             cellPerson = rowPerson.createCell(1);
-            cellPerson.setCellValue(personRepository.findById(i+1).getLastName());
+            cellPerson.setCellValue(personRepository.findById((long)i+1).getLastName());
 
             countMenu = 0;
             for (int j = 0; j < datesUntilList.size() - 1 ; j++) {
                 cellPerson = rowPerson.createCell(j+2);
 
-                Consumation personCosumation = consumationRepository.findByDateAndPerson(datesUntilList.get(j),personRepository.findById(i+1));
+                Consumation personCosumation = consumationRepository.findByDateAndPerson(datesUntilList.get(j),personRepository.findById((long)i+1));
 
                 if(personCosumation != null){
                     if(personCosumation.isHasConsumed()){
