@@ -44,9 +44,9 @@ endif::backend-html5[]
 
 == Begriffe / Befehle
 * ATR = Answer To Reset
-*  Script - package.sh (wenn Änderung im Code durchgeführt werden)
+*  Script - ./package.sh (wenn Änderung im Code durchgeführt werden)
 ** Script zum Kompilieren und Ausführen eines jar-Files
-* Script - run.sh
+* Script - ./run.sh
 ** Script nur fürs Ausführen eines jar-Files
 
 
