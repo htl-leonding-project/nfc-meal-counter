@@ -2,7 +2,7 @@
 
 ## Projektarichtekture:
 
-image::images/Projektarichtekture.png[]
+image::images/Projektarichtektur.png[Projektarichtekture]
 
 
 ## Ausgangssituation:
