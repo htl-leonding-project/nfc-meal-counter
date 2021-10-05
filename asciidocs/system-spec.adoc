@@ -2,7 +2,10 @@
 
 ## Projektarichtekture:
 
-image::images/Projektarichtekture.png[]
+image::images/Projektarichtektur.png[Projektarichtekture]
+
+## Systemarchitektur
+image::images/Systemarchitektur.png[Systemarchitektur]
 
 
 ## Ausgangssituation:

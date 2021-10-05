@@ -47,7 +47,7 @@ endif::backend-html5[]
 
 == Besprochene Themen
 * Wir haben einen Fehler im ConsumationRepositoryTest und ConsumationRepository herausgefunden und diesen anschließend behoben.
-* Weiteres haben wir noch im nfc-prototype Projekt diverse dependencies geändert und somit verusucht die main-methode zum Laufen zu bringen dies ist uns noch nicht gelungen.
+* Weiteres haben wir noch im nfc-prototype Projekt diverse dependencies geändert und somit vesucht die main-methode zum Laufen zu bringen dies ist uns noch nicht gelungen.
 
 
 
