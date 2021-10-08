@@ -101,4 +101,16 @@ public class Person extends PanacheEntityBase {
     public int hashCode() {
         return Objects.hash(id, nfcCard, firstName, lastName, entryYear);
     }
+
+
+    @Override
+    public String toString() {
+        return "Person{" +
+                "id=" + id +
+                ", nfcCard=" + nfcCard +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", entryYear=" + entryYear +
+                '}';
+    }
 }
