@@ -24,6 +24,7 @@ public class NfcCard extends PanacheEntityBase {
 
     public NfcCard(String nfcId) {
         this.nfcId = nfcId;
+        this.registerDateTime = LocalDateTime.now();
     }
 
     public NfcCard() {
