@@ -2,7 +2,7 @@ GET http://localhost:8080/api/consumation
 
 ####
 
-POST http://localhost:8080/api/consumation
+POST http://localhost:8080/api/consumation/saveConsumation
 Content-Type: application/json
 
 {
@@ -36,3 +36,18 @@ Content-Type: application/json
 ###
 
 GET http://localhost:8080/api/person/3
+
+####
+
+POST http://localhost:8080/api/nfcCard/345
+Content-Type: application/json
+
+####
+
+POST http://localhost:8080/api/nfcCard/assignCard/788/1
+Content-Type: application/json
+
+####
+
+POST http://localhost:8080/api/nfcCard/assignCard/123/2
+Content-Type: application/json
