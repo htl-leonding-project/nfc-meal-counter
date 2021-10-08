@@ -19,7 +19,7 @@ public class NfcRepository implements PanacheRepository<NfcCard> {
 
     @Inject
     PersonRepository personRepository;
-
+//
 //    @Transactional
 //    public void checkedNfcCard(String nfcId) {
 //        if(personRepository.findByNfcId(nfcId) == null) {
@@ -29,17 +29,27 @@ public class NfcRepository implements PanacheRepository<NfcCard> {
 //    }
 
 
-//    public Person findByPersonId (Person person) {
-//        return em.createQuery("select p from Person p where p.id = :id", Person.class)
-//                .setParameter("id", person.getId()).getSingleResult();
-//    }
-
-//    public NfcCard findByNfcId (String nfcId) {
-//        return em.createQuery("select P from Person p where p.nfcCard.nfcId = :id", NfcCard.class)
-//                .setParameter("id", nfcId).getSingleResult();
-//    }
+    public NfcCard findByNfcId(String nfcId) {
+        return em.createQuery("select n from NfcCard n where n.nfcId = :id", NfcCard.class)
+                .setParameter("id", nfcId).getSingleResult();
+    }
 
 
+    public boolean cardExists(String nfcId) {
+        return em.createQuery("select count(n) from NfcCard n where n.nfcId = :id", Long.class)
+                .setParameter("id", nfcId)
+                .getSingleResult() == 1;
+    }
 
+    public Person findCardOwner(String nfcId){
+        return em.createQuery("select p from Person p where p.nfcCard.nfcId = :id", Person.class)
+                .setParameter("id", nfcId)
+                .getSingleResult();
+    }
 
+    public boolean hasCardOwner(String nfcId){
+        return em.createQuery("select count(p) from Person p where p.nfcCard.nfcId = :id", Long.class)
+                .setParameter("id", nfcId)
+                .getSingleResult() == 1;
+    }
 }
