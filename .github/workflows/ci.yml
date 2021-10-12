@@ -31,7 +31,7 @@
         - name: create .ssh/known_hosts
           run: |
               ssh-keyscan -H -t rsa -v ${{ secrets.NFCMEAL_IP }}  >> ~/.ssh/known_hosts
-        - name: copy binaries to NFCMEALSERVER
+        - name: copy binaries to nfc-meal-counter
           run: |
                 echo "Hallo ich bin hier"
                 ls -l target/
