@@ -28,9 +28,9 @@
           uses: webfactory/ssh-agent@v0.4.1
           with:
            ssh-private-key: ${{ secrets.NFCMEALSERVER }}
-        - name: create .ssh/nfc_known_hosts
+        - name: create .ssh/known_hosts
           run: |
-              ssh-keyscan -H -t rsa -v ${{ secrets.NFCMEAL_IP }}  >> ~/.ssh/nfc_known_hosts
+              ssh-keyscan -H -t rsa -v ${{ secrets.NFCMEAL_IP }}  >> ~/.ssh/known_hosts
         - name: copy binaries to NFCMEALSERVER
           run: |
                 echo "Hallo ich bin hier"
