@@ -176,7 +176,7 @@
                         <configuration>
                             <archive>
                                 <manifest>
-                                    <mainClass>com.mkyong.core.App</mainClass>
+                                    <mainClass>at.htl.mealcounter.boundary.NfcEndpoint</mainClass>
                                 </manifest>
                             </archive>
                         </configuration>
