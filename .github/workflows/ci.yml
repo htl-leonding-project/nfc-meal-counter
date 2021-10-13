@@ -35,7 +35,7 @@
           run: |
                 echo "Hallo ich bin hier"
                 ls -l target/
-                scp target/nfc-meal-counter-1.0-SNAPSHOT.jar ${{ secrets.NFCMEAL_USER }}@${{ secrets.NFCMEAL_IP }}:
+                scp target/nfc-meal-counter-1.0-SNAPSHOT-runner.jar ${{ secrets.NFCMEAL_USER }}@${{ secrets.NFCMEAL_IP }}:
 
 
 

@@ -8,9 +8,9 @@
     <version>1.0-SNAPSHOT</version>
     <properties>
         <surefire-plugin.version>3.0.0-M5</surefire-plugin.version>
-        <maven.compiler.target>17</maven.compiler.target>
+        <maven.compiler.target>11</maven.compiler.target>
         <quarkus.platform.version>2.2.3.Final</quarkus.platform.version>
-        <maven.compiler.source>17</maven.compiler.source>
+        <maven.compiler.source>11</maven.compiler.source>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <quarkus.platform.artifact-id>quarkus-universe-bom</quarkus.platform.artifact-id>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
@@ -169,19 +169,6 @@
                             </execution>
                         </executions>
                     </plugin>
-                    <plugin>
-                        <groupId>org.apache.maven.plugins</groupId>
-                        <artifactId>maven-jar-plugin</artifactId>
-                        <version>2.4</version>
-                        <configuration>
-                            <archive>
-                                <manifest>
-                                    <mainClass>at.htl.mealcounter.boundary.NfcEndpoint</mainClass>
-                                </manifest>
-                            </archive>
-                        </configuration>
-                    </plugin>
-
                 </plugins>
             </build>
             <properties>
