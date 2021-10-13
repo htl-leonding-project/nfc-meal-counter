@@ -1,0 +1,8 @@
+[Unit]
+Description=ATD daemon
+[Service]
+Type=forking
+ExecStart=/usr/bin/java -jar nfc-meal-counter-1.0-SNAPSHOT-runner.jar
+ava -jar
+[Install]
+WantedBy=multi-user.target
