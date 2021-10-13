@@ -2,7 +2,7 @@
 
   on:
     push:
-      branches: [ master ]
+      branches: [ master]
     pull_request:
       branches: [ master ]
 
@@ -24,6 +24,8 @@
               ${{ runner.os }}-maven-
         - name: Build
           run: ./mvnw package -B -DskipTests
+          working-directory: application-server
+
         - name: install ssh key
           uses: webfactory/ssh-agent@v0.4.1
           with:
