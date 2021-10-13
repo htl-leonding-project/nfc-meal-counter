@@ -40,6 +40,4 @@
                 mkdir -p /usr/local/bin/nfc-meal-counter
                 scp target/nfc-meal-counter-1.0-SNAPSHOT-runner.jar ${{ secrets.NFCMEAL_USER }}@${{ secrets.NFCMEAL_IP }}:
                 mkdir -p /usr/local/bin/nfc-meal-counter
-
-
-
+          working-direcory: application-server
