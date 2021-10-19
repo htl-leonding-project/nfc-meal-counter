@@ -1,4 +1,4 @@
-GET http://localhost:8080/api/consumation
+GET http://localhost:8080/api/consumation/findAll
 
 ####
 
@@ -56,3 +56,8 @@ Content-Type: application/json
 ###
 
 GET http://localhost:8080/api/person/importPersons
+
+###
+
+GET http://localhost:8080/api/consumation/importConsumations
+

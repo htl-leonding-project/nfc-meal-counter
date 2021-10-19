@@ -6,16 +6,17 @@
     <groupId>at.htl.mealcounter</groupId>
     <artifactId>nfc-meal-counter</artifactId>
     <version>1.0-SNAPSHOT</version>
+
     <properties>
         <surefire-plugin.version>3.0.0-M5</surefire-plugin.version>
         <maven.compiler.target>11</maven.compiler.target>
-        <quarkus.platform.version>2.2.3.Final</quarkus.platform.version>
+        <quarkus.platform.version>2.3.0.Final</quarkus.platform.version>
         <maven.compiler.source>11</maven.compiler.source>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <quarkus.platform.artifact-id>quarkus-universe-bom</quarkus.platform.artifact-id>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <maven.compiler.parameters>true</maven.compiler.parameters>
-        <quarkus-plugin.version>2.2.3.Final</quarkus-plugin.version>
+        <quarkus-plugin.version>2.3.0.Final</quarkus-plugin.version>
         <compiler-plugin.version>3.8.1</compiler-plugin.version>
         <quarkus.platform.group-id>io.quarkus</quarkus.platform.group-id>
     </properties>
@@ -67,10 +68,6 @@
             <scope>test</scope>
         </dependency>
         <dependency>
-            <groupId>io.quarkus</groupId>
-            <artifactId>quarkus-jdbc-postgresql</artifactId>
-        </dependency>
-        <dependency>
             <groupId>io.rest-assured</groupId>
             <artifactId>rest-assured</artifactId>
             <scope>test</scope>
@@ -102,7 +99,10 @@
             <version>1.3.5</version>
             <scope>test</scope>
         </dependency>
-
+        <dependency>
+            <groupId>io.quarkus</groupId>
+            <artifactId>quarkus-jdbc-postgresql</artifactId>
+        </dependency>
     </dependencies>
     <build>
         <plugins>
@@ -169,6 +169,19 @@
                             </execution>
                         </executions>
                     </plugin>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-jar-plugin</artifactId>
+                        <version>2.4</version>
+                        <configuration>
+                            <archive>
+                                <manifest>
+                                    <mainClass>at.htl.mealcounter.boundary.NfcEndpoint</mainClass>
+                                </manifest>
+                            </archive>
+                        </configuration>
+                    </plugin>
+
                 </plugins>
             </build>
             <properties>

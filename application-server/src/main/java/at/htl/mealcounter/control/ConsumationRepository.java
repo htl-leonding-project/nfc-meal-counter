@@ -20,6 +20,7 @@ import java.nio.file.Paths;
 import java.time.Instant;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.YearMonth;
 import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -73,6 +74,49 @@ public class ConsumationRepository implements PanacheRepository<Consumation> {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    @Transactional
+    public void fillWithTestData() {
+
+
+        for (int i = 1; i <= personRepository.findAll().list().size(); i++) {
+
+
+            for (int j = 1; j <= 12; j++) {
+
+                YearMonth yearMonthObject = YearMonth.of(2020, j);
+                int daysInMonth = yearMonthObject.lengthOfMonth();
+
+                for (int k = 1; k <= daysInMonth; k++) {
+
+                    String month = String.valueOf(j);
+                    String day= String.valueOf(k);
+                    String date = "";
+                    boolean consumed = true;
+                    int zahl = (int)((Math.random()) * 2 + 1);
+
+                    if(j < 10){
+                        month = "0"+j;
+                    }
+
+                    if(k < 10){
+                        day = "0"+k;
+                    }
+
+                    date = "2020-"+month+"-"+day;
+                    consumed = zahl == 1;
+                    Consumation consumation = new Consumation(personRepository.findById((long)i),LocalDate.parse(date),consumed);
+
+                    em.merge(consumation);
+                }
+
+            }
+
+
+
+        }
+
     }
 
 

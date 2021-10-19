@@ -68,4 +68,16 @@ public class ConsumationEndpoint {
                     .build();
         }
     }
+
+    @GET
+    @Path("/importConsumations")
+    @Produces(MediaType.APPLICATION_JSON)
+    @Transactional
+    public Response importConsumations() {
+
+        consumationRepository.fillWithTestData();
+
+        return Response.ok().build();
+    }
+
 }
