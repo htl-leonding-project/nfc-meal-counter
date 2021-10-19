@@ -2,9 +2,7 @@ package at.htl.mealcounter.boundary;
 
 
 import at.htl.mealcounter.control.PersonRepository;
-import at.htl.mealcounter.entity.Consumation;
 import at.htl.mealcounter.entity.NfcCard;
-import at.htl.mealcounter.entity.Person;
 
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
@@ -14,6 +12,7 @@ import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.UriInfo;
+
 
 @RequestScoped
 @Path("/person")
@@ -75,6 +74,17 @@ public class PersonEndpoint {
                     .header("Reason","Person with id" + id + "does not exist")
                     .build();
         }
+    }
+
+    @GET
+    @Path("importPersons")
+    @Produces(MediaType.APPLICATION_JSON)
+    @Transactional
+    public Response importPersons() {
+
+        personRepository.readFromCsv();
+
+       return Response.ok().build();
     }
 
 

@@ -31,11 +31,11 @@ public class InitBean {
 
     @Transactional
     public void startUp(@Observes StartupEvent startupEvent) {
-        personRepository.readFromCsv();
+       // personRepository.readFromCsv();
 
 
 
-        fillWithTestData();
+       // fillWithTestData();
     }
 
 
